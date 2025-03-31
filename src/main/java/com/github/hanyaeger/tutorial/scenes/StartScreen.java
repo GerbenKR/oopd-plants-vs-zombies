@@ -19,12 +19,13 @@ public class StartScreen extends StaticScene {
 
     @Override
     public void setupScene() {
+        setBackgroundAudio("audio/theme.mp3");
         setBackgroundImage("backgrounds/startscreen.jpg");
     }
 
     @Override
     public void setupEntities() {
-        var startButton = new StartGameButton(new Coordinate2D(getWidth() / 2, getHeight() / 2 + 60), this.pvz);
+        var startButton = new StartGameButton(new Coordinate2D(getWidth() / 2, getHeight() / 2), this.pvz);
         addEntity(startButton);
     }
 }

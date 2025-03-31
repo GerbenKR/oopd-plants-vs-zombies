@@ -7,6 +7,7 @@ import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import com.github.hanyaeger.api.userinput.MouseEnterListener;
 import com.github.hanyaeger.api.userinput.MouseExitListener;
 import com.github.hanyaeger.tutorial.PVZ;
+import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -30,11 +31,13 @@ public class StartGameButton extends TextEntity implements MouseButtonPressedLis
 
     @Override
     public void onMouseEntered() {
-
+        setFill(Color.DARKGREEN);
+        setCursor(Cursor.HAND);
     }
 
     @Override
     public void onMouseExited() {
-
+        setFill(Color.WHITE);
+        setCursor(Cursor.DEFAULT);
     }
 }

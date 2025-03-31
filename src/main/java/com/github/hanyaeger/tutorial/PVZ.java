@@ -14,6 +14,5 @@ public class PVZ extends YaegerGame {
     @Override
     public void setupScenes() {
         addScene(0, new StartScreen(this));
-        addScene(1, new StartScreen(this));
     }
 }

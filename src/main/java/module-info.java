@@ -3,7 +3,7 @@ module waterworld {
 
     exports com.github.hanyaeger.tutorial;
 
-    //  opens audio;
+    opens audio;
     opens backgrounds;
     // opens sprites;
 }
