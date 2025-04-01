@@ -6,6 +6,7 @@ import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.tutorial.PVZ;
 import com.github.hanyaeger.tutorial.entities.map.GrassTile;
 import com.github.hanyaeger.tutorial.entities.map.GrassTileMap;
+import com.github.hanyaeger.tutorial.entities.map.PlantInventoryItemMap;
 
 public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, TileMapContainer {
     private PVZ pvz;
@@ -31,5 +32,6 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     @Override
     public void setupTileMaps() {
         addTileMap(new GrassTileMap());
+        addTileMap(new PlantInventoryItemMap(this));
     }
 }
