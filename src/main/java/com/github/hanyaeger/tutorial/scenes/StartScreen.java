@@ -29,19 +29,7 @@ public class StartScreen extends StaticScene {
 
     @Override
     public void setupEntities() {
-//        var startButton = new StartGameButton(new Coordinate2D(getWidth() / 2, getHeight() / 2), this.pvz);
-//        addEntity(startButton);
-
-        var normalZombie = new NormalZombie(new Coordinate2D(50, 100));
-        addEntity(normalZombie);
-
-        var coneZombie = new ConeZombie(new Coordinate2D(200, 100));
-        addEntity(coneZombie);
-
-        var bucketZombie = new BucketZombie(new Coordinate2D(300, 100));
-        addEntity(bucketZombie);
-
-        var balloonZombie = new BalloonZombie(new Coordinate2D(400, 100));
-        addEntity(balloonZombie);
+        var startButton = new StartGameButton(new Coordinate2D(getWidth() / 2, getHeight() / 2), this.pvz);
+        addEntity(startButton);
     }
 }
