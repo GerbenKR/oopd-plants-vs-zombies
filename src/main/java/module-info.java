@@ -6,7 +6,7 @@ module waterworld {
 
     opens audio;
     opens backgrounds;
-    //opens sprites;
+    opens sprites;
 
     exports com.github.hanyaeger.tutorial.entities.buttons;
 }

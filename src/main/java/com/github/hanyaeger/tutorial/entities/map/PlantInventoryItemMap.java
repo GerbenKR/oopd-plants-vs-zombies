@@ -2,6 +2,7 @@ package com.github.hanyaeger.tutorial.entities.map;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.TileMap;
 import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 
@@ -16,19 +17,14 @@ public class PlantInventoryItemMap extends TileMap {
     @Override
     public void setupEntities() {
         for(int index = 0; index <= 4; index++) {
-            addEntity(index, PlantInventoryItem.class);
+            addEntity(index, PlantInventoryItem.class, 1);
         }
     }
 
     @Override
     public int[][] defineMap() {
-        int[][] map = {
-                {0},
-                {1},
-                {2},
-                {3},
-                {4},
+        return new int[][]{
+            {0}, {1}, {2}, {3}, {4},
         };
-        return map;
     }
 }
