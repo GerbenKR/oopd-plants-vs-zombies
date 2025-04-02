@@ -4,6 +4,6 @@ import com.github.hanyaeger.api.Coordinate2D;
 
 public class PeaShooter extends Plant {
     public PeaShooter(Coordinate2D location) {
-        super("peashooter", location, 100, 100, 1);
+        super("sprites/peashooter.gif", location, 100, 100, 1);
     }
 }

@@ -17,7 +17,7 @@ public class PlantInventoryItemMap extends TileMap {
     @Override
     public void setupEntities() {
         for(int index = 0; index <= 4; index++) {
-            addEntity(index, PlantInventoryItem.class, 1);
+            addEntity(index, PlantInventoryItem.class, new Object[]{level, index});
         }
     }
 
