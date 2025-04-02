@@ -5,7 +5,6 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import com.github.hanyaeger.tutorial.entities.managers.SunManager;
-import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 import javafx.scene.input.MouseButton;
 
 public class Sun extends SpriteEntity implements MouseButtonPressedListener {
