@@ -2,7 +2,9 @@ package com.github.hanyaeger.tutorial;
 
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
+import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 import com.github.hanyaeger.tutorial.scenes.GameOverScene;
+import com.github.hanyaeger.tutorial.scenes.StartScreen;
 import com.github.hanyaeger.tutorial.scenes.VictoryScene;
 
 public class PVZ extends YaegerGame {
