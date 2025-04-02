@@ -14,12 +14,17 @@ import com.github.hanyaeger.tutorial.entities.plants.PeaShooter;
 import com.github.hanyaeger.tutorial.entities.plants.Plant;
 import com.github.hanyaeger.tutorial.entities.plants.Sunflower;
 import com.github.hanyaeger.tutorial.entities.spawners.SunSpawner;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, TileMapContainer {
     private PVZ pvz;
     private InventoryItem selectedPlant;
+    private ArrayList<Integer> cooldownPlants = new ArrayList<>();
     private ArrayList<InventoryItem> allowedPlants = new ArrayList<>();
     private final SunManager sunManager = new SunManager();
 
@@ -64,12 +69,29 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
         }
 
         this.sunManager.subtractSun(this.selectedPlant.getCost());
+        cooldownPlants.add(selectedPlant.getId());
+        startCooldownTimer(selectedPlant.getId());
         this.selectedPlant = null;
+
+    }
+
+    private void startCooldownTimer(int plantId) {
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(10), e -> {
+            cooldownPlants.remove(Integer.valueOf(plantId));
+        });
+
+        Timeline timeline = new Timeline(keyFrame);
+        timeline.setCycleCount(1);
+        timeline.play();
     }
 
     @Override
     public void setupTileMaps() {
         addTileMap(new GrassTileMap(this));
+    }
+
+    public ArrayList<Integer> getCooldownPlants() {
+        return cooldownPlants;
     }
 
     public ArrayList<InventoryItem> getAllowedPlants() {

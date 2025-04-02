@@ -33,14 +33,14 @@ public class InventoryItemBox extends RectangleEntity implements MouseButtonPres
 
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        if(sunManager.getSunAmount() >= inventoryItem.getCost()) {
+        if(isInventoryItemSelectable()) {
             this.level.setSelectedPlant(inventoryItem);
         }
     }
 
     @Override
     public void onMouseEntered() {
-        if(sunManager.getSunAmount() >= inventoryItem.getCost()) {
+        if(isInventoryItemSelectable()) {
             setCursor(Cursor.HAND);
             setStrokeWidth(10);
             setStrokeColor(Color.BLACK);
@@ -51,5 +51,9 @@ public class InventoryItemBox extends RectangleEntity implements MouseButtonPres
     public void onMouseExited() {
         setCursor(Cursor.DEFAULT);
         setStrokeColor(Color.BURLYWOOD);
+    }
+
+    public boolean isInventoryItemSelectable() {
+        return sunManager.getSunAmount() >= inventoryItem.getCost() && !level.getCooldownPlants().contains(inventoryItem.getId());
     }
 }

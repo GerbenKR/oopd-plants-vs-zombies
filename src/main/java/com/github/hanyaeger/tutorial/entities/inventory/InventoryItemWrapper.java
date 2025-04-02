@@ -9,12 +9,12 @@ import com.github.hanyaeger.tutorial.entities.managers.SunManager;
 import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 
 public class InventoryItemWrapper extends CompositeEntity {
-    private static final int HEIGHT = 85;
-    private static final int WIDTH = 100;
+    private static final double HEIGHT = 85;
+    private static final double WIDTH = 100;
 
-    private InventoryItem inventoryItem;
-    private SunManager sunManager;
-    private FirstLevel level;
+    private final InventoryItem inventoryItem;
+    private final SunManager sunManager;
+    private final FirstLevel level;
 
     public InventoryItemWrapper(InventoryItem item, int index, SunManager sunManager, FirstLevel level) {
         super(new Coordinate2D(20, 10 + (index * 100)));
