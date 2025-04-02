@@ -1,5 +1,5 @@
 package com.github.hanyaeger.tutorial.scenes;
-
+import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
@@ -9,7 +9,6 @@ import com.github.hanyaeger.tutorial.entities.inventory.InventoryItem;
 import com.github.hanyaeger.tutorial.entities.inventory.InventoryItemWrapper;
 import com.github.hanyaeger.tutorial.entities.managers.SunManager;
 import com.github.hanyaeger.tutorial.WaveConfig;
-import com.github.hanyaeger.tutorial.entities.map.GrassTile;
 import com.github.hanyaeger.tutorial.entities.map.GrassTileMap;
 import com.github.hanyaeger.tutorial.entities.plants.PeaShooter;
 import com.github.hanyaeger.tutorial.entities.plants.Plant;
@@ -18,8 +17,6 @@ import com.github.hanyaeger.tutorial.entities.spawners.SunSpawner;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import com.github.hanyaeger.tutorial.spawners.ZombieSpawner;
 
