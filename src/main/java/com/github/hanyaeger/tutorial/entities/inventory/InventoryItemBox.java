@@ -20,15 +20,16 @@ public class InventoryItemBox extends RectangleEntity implements MouseButtonPres
 
     public InventoryItemBox(Coordinate2D position, Size size, InventoryItem inventoryItem, SunManager sunManager, FirstLevel level) {
         super(position, size);
-        drawBox();
 
         this.sunManager = sunManager;
         this.inventoryItem = inventoryItem;
         this.level = level;
+
+        drawBox();
     }
 
     public void drawBox() {
-        setFill(Color.BURLYWOOD);
+        setFill(Color.WHITE);
     }
 
     @Override
@@ -42,15 +43,18 @@ public class InventoryItemBox extends RectangleEntity implements MouseButtonPres
     public void onMouseEntered() {
         if(isInventoryItemSelectable()) {
             setCursor(Cursor.HAND);
-            setStrokeWidth(10);
-            setStrokeColor(Color.BLACK);
+            setStrokeWidth(5);
+            setStrokeColor(Color.GREEN);
+        } else {
+            setStrokeWidth(5);
+            setStrokeColor(Color.RED);
         }
     }
 
     @Override
     public void onMouseExited() {
         setCursor(Cursor.DEFAULT);
-        setStrokeColor(Color.BURLYWOOD);
+        setStrokeWidth(0);
     }
 
     public boolean isInventoryItemSelectable() {

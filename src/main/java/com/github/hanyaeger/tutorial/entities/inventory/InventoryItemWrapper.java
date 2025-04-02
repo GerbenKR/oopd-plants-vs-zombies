@@ -8,6 +8,8 @@ import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.tutorial.entities.managers.SunManager;
 import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 
+import java.awt.*;
+
 public class InventoryItemWrapper extends CompositeEntity {
     private static final double HEIGHT = 85;
     private static final double WIDTH = 100;
@@ -25,7 +27,7 @@ public class InventoryItemWrapper extends CompositeEntity {
 
     @Override
     protected void setupEntities() {
-        var displayNameEntity = new TextEntity(new Coordinate2D(WIDTH / 2, HEIGHT / 2), inventoryItem.getName());
+        var displayNameEntity = new TextEntity(new Coordinate2D(WIDTH / 2, HEIGHT / 2), inventoryItem.getName() + "(" + this.inventoryItem.getCost() + ")");
         displayNameEntity.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 
         addEntity(new InventoryItemBox(new Coordinate2D(0, 0), new Size(WIDTH, HEIGHT), inventoryItem, sunManager, level));

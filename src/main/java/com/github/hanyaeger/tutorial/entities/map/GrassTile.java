@@ -30,7 +30,9 @@ public class GrassTile extends RectangleEntity implements MouseButtonPressedList
 
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        this.level.addSelectedPlant(this.position);
+        if(this.level.getSelectedPlant() != null) {
+            this.level.addSelectedPlant(this.position);
+        }
     }
 
 
