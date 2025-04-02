@@ -36,7 +36,7 @@ public class GrassTile extends RectangleEntity implements MouseButtonPressedList
 
     @Override
     public void onMouseEntered() {
-        if(this.level.getSelectedPlantId() > -1) {
+        if(this.level.getSelectedPlant() != null) {
             setCursor(Cursor.HAND);
             setOpacity(0.25);
         }
