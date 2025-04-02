@@ -12,4 +12,9 @@ public class Peashooter extends Plant {
     protected void setupEntities() {
         addEntity(new PeashooterSprite("sprites/peashooter.gif", new Coordinate2D(0, 0)));
     }
+
+    @Override
+    public void doAction() {
+        System.out.println("Peashooter");
+    }
 }

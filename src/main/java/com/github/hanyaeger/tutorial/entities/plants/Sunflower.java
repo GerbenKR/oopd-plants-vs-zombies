@@ -23,4 +23,9 @@ public class Sunflower extends Plant {
     protected void setupEntities() {
         addEntity(new SunflowerSprite("sprites/sunflower.gif", new Coordinate2D(0, 0)));
     }
+
+    @Override
+    public void doAction() {
+        System.out.println("Sunflower");
+    }
 }

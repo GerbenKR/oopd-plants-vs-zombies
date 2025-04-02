@@ -22,6 +22,8 @@ public abstract class Plant extends CompositeEntity {
         this.id = 0;
     }
 
+    public abstract void doAction();
+
     public void setHealth(int health) {
         this.health = health;
     }
