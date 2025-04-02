@@ -10,7 +10,7 @@ import com.github.hanyaeger.tutorial.entities.inventory.InventoryItemWrapper;
 import com.github.hanyaeger.tutorial.entities.managers.SunManager;
 import com.github.hanyaeger.tutorial.WaveConfig;
 import com.github.hanyaeger.tutorial.entities.map.GrassTileMap;
-import com.github.hanyaeger.tutorial.entities.plants.PeaShooter;
+import com.github.hanyaeger.tutorial.entities.plants.Peashooter;
 import com.github.hanyaeger.tutorial.entities.plants.Plant;
 import com.github.hanyaeger.tutorial.entities.plants.Sunflower;
 import com.github.hanyaeger.tutorial.entities.spawners.SunSpawner;
@@ -69,7 +69,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
                 addEntity(sunflower);
                 break;
             case Config.PEASHOOTER_ID:
-                Plant peashooter = new PeaShooter(location);
+                Plant peashooter = new Peashooter(location);
                 addEntity(peashooter);
                 break;
             default:

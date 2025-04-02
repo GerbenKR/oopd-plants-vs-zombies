@@ -3,19 +3,19 @@ package com.github.hanyaeger.tutorial.entities.plants;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.CompositeEntity;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 
-public abstract class Plant extends DynamicSpriteEntity {
+public abstract class Plant extends CompositeEntity {
     protected int id;
     protected double health;
     protected int cost;
     protected Coordinate2D location;
-    protected String resource;
 
-    public Plant(String resource, Coordinate2D initialLocation, double health, int cost, int id) {
-        super(resource, initialLocation, new Size(50, 50));
+    public Plant(Coordinate2D initialLocation, double health, int cost, int id) {
+        super(initialLocation);
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        this.resource = resource;
+
         this.location = initialLocation;
         this.health = health;
         this.cost = cost;
