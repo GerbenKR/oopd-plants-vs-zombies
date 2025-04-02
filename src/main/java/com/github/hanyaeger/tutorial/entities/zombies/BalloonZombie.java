@@ -5,7 +5,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 public class BalloonZombie extends Zombie {
 
     public BalloonZombie(Coordinate2D location) {
-        super(location, "sprites/balloon-zombie.gif", 100, 1, 10);
+        super(location, "sprites/balloon-zombie.gif", 200, 0.3, 100);
     }
 
 }
