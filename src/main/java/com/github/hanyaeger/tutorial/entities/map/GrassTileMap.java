@@ -3,13 +3,16 @@ package com.github.hanyaeger.tutorial.entities.map;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.scenes.TileMap;
+import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 
 public class GrassTileMap extends TileMap {
-    private static int ROWS = 5;
-    private static int COLS = 8;
+    private static final int ROWS = 5;
+    private static final int COLS = 8;
+    private FirstLevel level;
 
-    public GrassTileMap() {
+    public GrassTileMap(FirstLevel level) {
         super(new Coordinate2D(180, 55), new Size(520, 355));
+        this.level = level;
     }
 
     @Override
@@ -17,7 +20,7 @@ public class GrassTileMap extends TileMap {
         for(int row = 0; row < ROWS; row++) {
             for(int col = 0; col < COLS; col++) {
                 var uniqueIdentifier = row * col + row;
-                addEntity(uniqueIdentifier, GrassTile.class);
+                addEntity(uniqueIdentifier, GrassTile.class, level);
             }
         }
     }
