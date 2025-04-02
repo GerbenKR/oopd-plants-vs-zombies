@@ -1,5 +1,4 @@
 package com.github.hanyaeger.tutorial.scenes;
-
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.scenes.DynamicScene;
@@ -9,6 +8,7 @@ import com.github.hanyaeger.tutorial.config.Config;
 import com.github.hanyaeger.tutorial.entities.inventory.InventoryItem;
 import com.github.hanyaeger.tutorial.entities.inventory.InventoryItemWrapper;
 import com.github.hanyaeger.tutorial.entities.managers.SunManager;
+import com.github.hanyaeger.tutorial.WaveConfig;
 import com.github.hanyaeger.tutorial.entities.map.GrassTileMap;
 import com.github.hanyaeger.tutorial.entities.plants.PeaShooter;
 import com.github.hanyaeger.tutorial.entities.plants.Plant;
@@ -17,9 +17,10 @@ import com.github.hanyaeger.tutorial.entities.spawners.SunSpawner;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import com.github.hanyaeger.tutorial.spawners.ZombieSpawner;
+
+import java.util.List;
 
 public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, TileMapContainer {
     private PVZ pvz;
@@ -27,6 +28,12 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     private ArrayList<Integer> cooldownPlants = new ArrayList<>();
     private ArrayList<InventoryItem> allowedPlants = new ArrayList<>();
     private final SunManager sunManager = new SunManager();
+
+    private List<WaveConfig> waves = List.of(
+            new WaveConfig(WaveConfig.WaveType.WAVE, 60_000, 10_000),    // 1 minuut, elke 10 sec een zombie
+            new WaveConfig(WaveConfig.WaveType.WAVE, 120_000, 8_000),   // 2 minuten, elke 9 sec een zombie
+            new WaveConfig(WaveConfig.WaveType.FINAL_WAVE, 30_000, 5_000)     // 30 sec, elke 5 sec een zombie
+    );
 
     public FirstLevel(PVZ pvz) {
         this.pvz = pvz;
@@ -51,6 +58,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
 
     @Override
     public void setupEntitySpawners() {
+        addEntitySpawner(new ZombieSpawner(waves));
         addEntitySpawner(new SunSpawner(this.sunManager));
     }
 

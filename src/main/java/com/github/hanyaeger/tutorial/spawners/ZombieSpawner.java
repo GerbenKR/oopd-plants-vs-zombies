@@ -1,0 +1,70 @@
+package com.github.hanyaeger.tutorial.spawners;
+
+import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.entities.EntitySpawner;
+import com.github.hanyaeger.tutorial.WaveConfig;
+import com.github.hanyaeger.tutorial.entities.zombies.NormalZombie;
+
+import java.util.List;
+import java.util.Random;
+
+public class ZombieSpawner extends EntitySpawner {
+    private static final int START_COLUMN_X = 750;
+    private static final int START_COLUMN_Y = 50;
+
+    private static final int COLUMNS = 1;
+    private static final int ROWS = 5;
+
+    private static final int CELL_WIDTH = 55;
+    private static final int CELL_HEIGHT = 70;
+
+    private List<WaveConfig> waveConfigs;
+    private int waveIndex = 0;
+    private long waveStartTime;
+    private long lastSpawnTime;
+
+    public ZombieSpawner(List<WaveConfig> waveConfigs) {
+        super(0);
+
+        this.waveConfigs = waveConfigs;
+        this.waveStartTime = System.currentTimeMillis();
+        this.lastSpawnTime = 0;
+    }
+
+    @Override
+    protected void spawnEntities() {
+//        First, check if all waves are done or not
+        if (waveIndex >= waveConfigs.size()) return;
+
+        long now = System.currentTimeMillis();
+        WaveConfig currentWave = waveConfigs.get(waveIndex);
+
+        // Check of deze wave voorbij is
+        if (now - waveStartTime > currentWave.getDurationMs()) {
+            waveIndex++;
+            if (waveIndex < waveConfigs.size()) {
+                waveStartTime = now;
+                lastSpawnTime = 0;
+            }
+            return;
+        }
+
+        // Check of het tijd is om te spawnen
+        if (now - lastSpawnTime >= currentWave.getSpawnRateMs()) {
+            lastSpawnTime = now;
+
+            // Spawn 1 zombie
+            Coordinate2D spawnPosition = getRandomCellPosition();
+            var zombie = new NormalZombie(spawnPosition); // voorlopig alleen NormalZombie
+            spawn(zombie);
+        }
+    }
+
+    private Coordinate2D getRandomCellPosition() {
+        int row = new Random().nextInt(ROWS);
+        double x = START_COLUMN_X;
+        double y = START_COLUMN_Y + row * CELL_HEIGHT;
+
+        return new Coordinate2D(x, y);
+    }
+}
