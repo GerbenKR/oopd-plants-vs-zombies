@@ -2,27 +2,30 @@ package com.github.hanyaeger.tutorial.scenes;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
+import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.tutorial.PVZ;
+import com.github.hanyaeger.tutorial.entities.displays.SunDisplayText;
+import com.github.hanyaeger.tutorial.entities.managers.SunManager;
 import com.github.hanyaeger.tutorial.entities.map.GrassTile;
 import com.github.hanyaeger.tutorial.entities.map.GrassTileMap;
 import com.github.hanyaeger.tutorial.entities.map.PlantInventoryItemMap;
 import com.github.hanyaeger.tutorial.entities.plants.PeaShooter;
 import com.github.hanyaeger.tutorial.entities.plants.Plant;
 import com.github.hanyaeger.tutorial.entities.plants.Sunflower;
+import com.github.hanyaeger.tutorial.entities.spawners.SunSpawner;
 
 import java.util.ArrayList;
 
 public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, TileMapContainer {
-    public static final int SUNFLOWER = 1;
-    public static final int PEASHOOTER = 2;
+    private static final int SUNFLOWER = 1;
+    private static final int PEASHOOTER = 2;
 
     private PVZ pvz;
     private int selectedPlantId = -1;
     private int[] allowedPlantIds = {SUNFLOWER, PEASHOOTER};
-    private ArrayList<Plant> plants;
-
+    private SunManager sunManager = new SunManager();
 
     public FirstLevel(PVZ pvz) {
         this.pvz = pvz;
@@ -35,11 +38,12 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
 
     @Override
     public void setupEntities() {
+        addEntity(this.sunManager.getSunDisplayText());
     }
 
     @Override
     public void setupEntitySpawners() {
-
+        addEntitySpawner(new SunSpawner(this.sunManager));
     }
 
     public void addSelectedPlant(Coordinate2D location) {
