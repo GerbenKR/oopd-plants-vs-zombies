@@ -7,8 +7,8 @@ import com.github.hanyaeger.tutorial.entities.items.Pea;
 public class PeaSpawner extends EntitySpawner {
     private Coordinate2D location;
 
-    public PeaSpawner(Coordinate2D location) {
-        super(2500);
+    public PeaSpawner(Coordinate2D location, long interval) {
+        super(interval);
         this.location = location;
     }
 
