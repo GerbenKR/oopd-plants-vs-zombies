@@ -65,7 +65,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
 
     @Override
     public void setupEntitySpawners() {
-        addEntitySpawner(new ZombieSpawner(this, waves));
+        addEntitySpawner(new ZombieSpawner(pvz, this, waves));
         addEntitySpawner(new SunSpawner(this.sunManager));
     }
 
