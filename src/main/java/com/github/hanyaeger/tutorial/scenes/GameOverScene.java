@@ -32,7 +32,7 @@ public class GameOverScene extends StaticScene {
         var playAgain = new ActionButton(
                 new Coordinate2D(getWidth() / 2, getHeight() / 2),
                 "Play again",
-                () -> pvz.setActiveScene(2)
+                () -> pvz.setActiveScene(1)
         );
         addEntity(playAgain);
 
