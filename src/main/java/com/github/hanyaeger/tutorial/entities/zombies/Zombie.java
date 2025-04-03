@@ -19,14 +19,14 @@ public abstract class Zombie extends DynamicSpriteEntity implements Collided, Co
     public Zombie(PVZ pvz, FirstLevel firstLevel, Coordinate2D location, String image, int health, double speed, int damage) {
         super(image, location, new Size(50,77));
 
-        setMotion(speed, Direction.LEFT);
-
         this.pvz = pvz;
         this.firstLevel = firstLevel;
         this.location = location;
         this.health = health;
         this.speed = speed;
         this.damage = damage;
+
+        this.startWalking();
     }
 
     // When a zombie hits the (left) scene border, the game is over
@@ -47,6 +47,10 @@ public abstract class Zombie extends DynamicSpriteEntity implements Collided, Co
         if (firstLevel.getZombieCount() == 0 && firstLevel.isFinalWave()) {
             pvz.setActiveScene(3);
         }
+    }
+
+    public void startWalking() {
+        setMotion(this.speed, Direction.LEFT);
     }
 
     public int getDamage() {

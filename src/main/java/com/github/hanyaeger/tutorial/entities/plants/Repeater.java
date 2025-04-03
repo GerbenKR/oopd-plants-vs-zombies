@@ -37,6 +37,10 @@ public class Repeater extends Plant {
         for (Collider collider : list) {
             if (collider instanceof Zombie) {
                 this.health -= ((Zombie) collider).getDamage();
+
+                if (this.health <= 0) {
+                    ((Zombie) collider).startWalking();
+                }
             }
         }
     }
