@@ -9,15 +9,26 @@ import java.util.Random;
 
 public class SunSpawner extends EntitySpawner {
     private SunManager manager;
+    private Coordinate2D location;
 
     public SunSpawner(SunManager manager) {
         super(5000);
         this.manager = manager;
     }
 
+    public SunSpawner(SunManager manager, Coordinate2D location) {
+        super(5000);
+        this.manager = manager;
+        this.location = location;
+    }
+
     @Override
     protected void spawnEntities(){
-        spawn(new Sun(randomLocation(), this.manager));
+        if(this.location != null) {
+            spawn(new Sun(this.location, this.manager));
+        } else {
+            spawn(new Sun(randomLocation(), this.manager));
+        }
     }
 
     private Coordinate2D randomLocation() {

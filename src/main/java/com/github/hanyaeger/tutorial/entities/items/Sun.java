@@ -1,5 +1,6 @@
 package com.github.hanyaeger.tutorial.entities.items;
 
+import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.impl.SpriteEntity;
@@ -14,6 +15,7 @@ public class Sun extends SpriteEntity implements MouseButtonPressedListener {
     public Sun(Coordinate2D location, SunManager manager) {
         super("sprites/sun.gif", location, new Size(50, 50));
         this.manager = manager;
+        setAnchorPoint(AnchorPoint.CENTER_CENTER);
     }
 
     @Override

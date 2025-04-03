@@ -18,7 +18,7 @@ public class Sunflower extends Plant {
         this.manager = manager;
         doAction();
 
-        level.addEntitySpawner(new SunSpawner(this.manager));
+        level.addEntitySpawner(new SunSpawner(this.manager, location));
     }
 
     @Override
