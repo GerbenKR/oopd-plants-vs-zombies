@@ -23,26 +23,20 @@ public class GameOverScene extends StaticScene {
     }
 
     public void setupEntities(){
-        TextEntity title = new TextEntity(new Coordinate2D(getWidth() / 2, 80), "Game Over");
+        var title = new TextEntity(new Coordinate2D(getWidth() / 2, 80), "Game Over");
         title.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         title.setFill(Color.DARKRED);
         title.setFont(Font.font("Roboto", FontWeight.BOLD, 60));
         addEntity(title);
 
-        TextEntity subtitle = new TextEntity(new Coordinate2D(getWidth() / 2, 150), "Your journey ends here... but you can always try again!");
-        subtitle.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        subtitle.setFill(Color.WHITE);
-        subtitle.setFont(Font.font("Roboto", FontWeight.MEDIUM, 24));
-        addEntity(subtitle);
-
-        ActionButton playAgain = new ActionButton(
+        var playAgain = new ActionButton(
                 new Coordinate2D(getWidth() / 2, getHeight() / 2),
                 "Play again",
                 () -> pvz.setActiveScene(2)
         );
         addEntity(playAgain);
 
-        ActionButton returnToHome = new ActionButton(
+        var returnToHome = new ActionButton(
                 new Coordinate2D(getWidth() / 2, (getHeight() / 2) + 50),
                 "Return to Main Menu",
                 () -> pvz.setActiveScene(1)
