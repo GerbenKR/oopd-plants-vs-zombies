@@ -11,7 +11,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class VictoryScene extends StaticScene {
-    private PVZ pvz;
+    private final PVZ pvz;
 
     public VictoryScene(PVZ pvz) {
         this.pvz = pvz;

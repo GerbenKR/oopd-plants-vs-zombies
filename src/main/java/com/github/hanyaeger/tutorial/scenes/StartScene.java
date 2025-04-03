@@ -6,7 +6,7 @@ import com.github.hanyaeger.tutorial.PVZ;
 import com.github.hanyaeger.tutorial.entities.buttons.ActionButton;
 
 public class StartScene extends StaticScene {
-    private PVZ pvz;
+    private final PVZ pvz;
 
     public StartScene(PVZ pvz) {
         this.pvz = pvz;

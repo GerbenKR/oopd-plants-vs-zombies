@@ -3,9 +3,9 @@ package com.github.hanyaeger.tutorial;
 import com.github.hanyaeger.tutorial.enums.WaveType;
 
 public class WaveConfig {
-    private WaveType waveType;
-    private int durationMs;
-    private int spawnRateMs;
+    private final WaveType waveType;
+    private final int durationMs;
+    private final int spawnRateMs;
 
     public WaveConfig(WaveType waveType, int durationMs, int spawnRateMs) {
         this.waveType = waveType;
