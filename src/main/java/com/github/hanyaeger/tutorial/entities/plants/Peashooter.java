@@ -1,16 +1,14 @@
 package com.github.hanyaeger.tutorial.entities.plants;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.entities.EntitySpawner;
-import com.github.hanyaeger.core.entities.EntityCollection;
 import com.github.hanyaeger.tutorial.config.Config;
-import com.google.inject.Injector;
-
-import java.util.List;
+import com.github.hanyaeger.tutorial.entities.spawners.PeaSpawner;
+import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 
 public class Peashooter extends Plant {
-    public Peashooter(Coordinate2D location) {
+    public Peashooter(Coordinate2D location, FirstLevel level) {
         super(location, Config.PEASHOOTER_HEALTH, Config.SUNFLOWER_COST, Config.PEASHOOTER_ID);
+        level.addEntitySpawner(new PeaSpawner(location));
     }
 
     @Override
