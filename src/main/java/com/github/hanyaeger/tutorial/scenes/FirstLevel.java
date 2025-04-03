@@ -27,6 +27,9 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     private ArrayList<Integer> cooldownPlants = new ArrayList<>();
     private ArrayList<InventoryItem> allowedPlants = new ArrayList<>();
     private final SunManager sunManager = new SunManager();
+
+    private int zombieCount = 0;
+
     public AnnouncementDisplayText announcementDisplayText;
 
     private List<WaveConfig> waves = List.of(
@@ -128,4 +131,13 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     public void setSelectedPlant(InventoryItem selectedPlant) {
         this.selectedPlant = selectedPlant;
     }
+
+    public int getZombieCount() {
+        return zombieCount;
+    }
+
+    public void setZombieCount(int zombieCount) {
+        this.zombieCount = zombieCount;
+    }
+
 }

@@ -104,9 +104,14 @@ public class ZombieSpawner extends EntitySpawner {
 
             try {
                 Zombie zombie = zombieType.getZombieClass()
-                        .getConstructor(pvz.getClass(), Coordinate2D.class)
-                        .newInstance(pvz, spawnPosition);
+                        .getConstructor(pvz.getClass(), firstLevel.getClass(), Coordinate2D.class)
+                        .newInstance(pvz, firstLevel, spawnPosition);
                 spawn(zombie);
+
+                // Increase the zombie count
+                firstLevel.setZombieCount(firstLevel.getZombieCount() + 1);
+                System.out.println("Spawned a zombie!");
+                System.out.println("Zombie count: " + firstLevel.getZombieCount());
             } catch (Exception e) {
                 e.printStackTrace(); // Voor nu: printen. Later eventueel loggen.
             }
