@@ -5,10 +5,10 @@ import com.github.hanyaeger.api.scenes.StaticScene;
 import com.github.hanyaeger.tutorial.PVZ;
 import com.github.hanyaeger.tutorial.entities.buttons.StartGameButton;
 
-public class StartScreen extends StaticScene {
+public class StartScene extends StaticScene {
     private PVZ pvz;
 
-    public StartScreen(PVZ pvz) {
+    public StartScene(PVZ pvz) {
         this.pvz = pvz;
     }
 
