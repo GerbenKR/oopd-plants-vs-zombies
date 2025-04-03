@@ -1,7 +1,8 @@
-package com.github.hanyaeger.tutorial.entities.zombies;
+package com.github.hanyaeger.tutorial.enums;
+
+import com.github.hanyaeger.tutorial.entities.zombies.*;
 
 public enum ZombieType {
-
     NORMAL_ZOMBIE(NormalZombie.class),
     CONE_ZOMBIE(ConeZombie.class),
     BUCKET_ZOMBIE(BucketZombie.class),

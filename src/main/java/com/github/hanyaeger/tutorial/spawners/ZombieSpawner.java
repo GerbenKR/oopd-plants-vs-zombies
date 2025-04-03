@@ -4,9 +4,9 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.EntitySpawner;
 import com.github.hanyaeger.tutorial.WaveConfig;
 import com.github.hanyaeger.tutorial.entities.zombies.Zombie;
-import com.github.hanyaeger.tutorial.entities.zombies.ZombieType;
+import com.github.hanyaeger.tutorial.enums.ZombieType;
+import com.github.hanyaeger.tutorial.enums.WaveType;
 import com.github.hanyaeger.tutorial.scenes.FirstLevel;
-
 import java.util.List;
 import java.util.Random;
 
@@ -63,11 +63,11 @@ public class ZombieSpawner extends EntitySpawner {
     }
 
     private boolean isWaitingWave(WaveConfig wave) {
-        return wave.getWaveType() == WaveConfig.WaveType.WAITING;
+        return wave.getWaveType() == WaveType.WAITING;
     }
 
     private boolean isFinalWave(WaveConfig wave) {
-        return wave.getWaveType() == WaveConfig.WaveType.FINAL_WAVE;
+        return wave.getWaveType() == WaveType.FINAL_WAVE;
     }
 
     private void showFinalWaveStartingAnnouncement() {
