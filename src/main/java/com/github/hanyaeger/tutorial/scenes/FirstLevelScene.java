@@ -29,7 +29,7 @@ public class FirstLevelScene extends DynamicScene implements EntitySpawnerContai
     private final ArrayList<Integer> cooldownPlants = new ArrayList<>();
     private final ArrayList<InventoryItem> allowedPlants = new ArrayList<>();
 
-    private final AnnouncementDisplayText announcementDisplayText = new AnnouncementDisplayText(new Coordinate2D(getWidth() / 2, getHeight() / 2));
+    private AnnouncementDisplayText announcementDisplayText;
 
 //    This variable contains the waves this level contains
     private final List<WaveConfig> waves = List.of(
@@ -59,6 +59,8 @@ public class FirstLevelScene extends DynamicScene implements EntitySpawnerContai
 
     @Override
     public void setupEntities() {
+        announcementDisplayText = new AnnouncementDisplayText(new Coordinate2D(getWidth() / 2, getHeight() / 2));
+
         addEntity(this.announcementDisplayText);
         addEntity(this.sunManager.getSunDisplayText());
 
