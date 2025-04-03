@@ -112,7 +112,8 @@ public class ZombieSpawner extends EntitySpawner {
                 // Increase the zombie count
                 firstLevel.setZombieCount(firstLevel.getZombieCount() + 1);
             } catch (Exception e) {
-                e.printStackTrace(); // Voor nu: printen. Later eventueel loggen.
+                // Not ideal for production, but we aren't using any logger, so for this exersise it's ok i think
+                e.printStackTrace();
             }
         }
     }
