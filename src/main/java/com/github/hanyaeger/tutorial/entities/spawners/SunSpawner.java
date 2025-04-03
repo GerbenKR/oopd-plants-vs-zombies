@@ -8,7 +8,7 @@ import com.github.hanyaeger.tutorial.entities.managers.SunManager;
 import java.util.Random;
 
 public class SunSpawner extends EntitySpawner {
-    private SunManager manager;
+    private final SunManager manager;
     private Coordinate2D location;
 
     public SunSpawner(SunManager manager) {

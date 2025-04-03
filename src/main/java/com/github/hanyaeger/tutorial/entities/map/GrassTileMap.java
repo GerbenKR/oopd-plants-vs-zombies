@@ -8,7 +8,7 @@ import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 public class GrassTileMap extends TileMap {
     private static final int ROWS = 5;
     private static final int COLS = 8;
-    private FirstLevel level;
+    private final FirstLevel level;
 
     public GrassTileMap(FirstLevel level) {
         super(new Coordinate2D(180, 55), new Size(520, 355));
@@ -27,14 +27,13 @@ public class GrassTileMap extends TileMap {
 
     @Override
     public int[][] defineMap() {
-        int[][] map = {
+        return new int[][]{
                 {1, 2, 3, 4, 5, 6, 7, 8, 9},
                 {1, 2, 3, 4, 5, 6, 7, 8, 9},
                 {1, 2, 3, 4, 5, 6, 7, 8, 9},
                 {1, 2, 3, 4, 5, 6, 7, 8, 9},
                 {1, 2, 3, 4, 5, 6, 7, 8, 9},
         };
-        return map;
     }
 
 }

@@ -28,13 +28,15 @@ public class Peashooter extends Plant {
 
     @Override
     public void onCollision(List<Collider> list) {
-        if(this.health <= 0) {
+        if(this.getHealth() <= 0) {
             remove();
             level.getSpawners().remove(spawner);
+            this.level.getPlants().remove(this);
         }
 
         for (Collider collider : list) {
             if (collider instanceof Zombie) {
+                this.setHealth(this.getHealth() - ((Zombie) collider).getDamage());
                 this.health -= ((Zombie) collider).getDamage();
 
                 if (this.health <= 0) {

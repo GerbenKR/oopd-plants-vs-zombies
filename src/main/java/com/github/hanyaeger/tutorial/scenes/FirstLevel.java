@@ -24,6 +24,7 @@ import java.util.List;
 public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, TileMapContainer {
     private PVZ pvz;
     private InventoryItem selectedPlant;
+    private ArrayList<Plant> plants = new ArrayList<>();
     private ArrayList<Integer> cooldownPlants = new ArrayList<>();
     private ArrayList<InventoryItem> allowedPlants = new ArrayList<>();
     private final SunManager sunManager = new SunManager();
@@ -59,10 +60,9 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
         announcementDisplayText = new AnnouncementDisplayText(new Coordinate2D(getWidth() / 2, getHeight() / 2));
 
         addEntity(announcementDisplayText);
-
         addEntity(this.sunManager.getSunDisplayText());
 
-        for (int index = 0; index < this.allowedPlants.size(); index++) {
+        for (int index = 0; index < this.getAllowedPlants().size(); index++) {
             addEntity(new InventoryItemWrapper(this.allowedPlants.get(index), index, sunManager, this));
         }
     }
@@ -78,18 +78,22 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
             case Config.SUNFLOWER_ID:
                 Plant sunflower = new Sunflower(location, this.sunManager, this);
                 addEntity(sunflower);
+                plants.add(sunflower);
                 break;
             case Config.PEASHOOTER_ID:
                 Plant peashooter = new Peashooter(location, this);
                 addEntity(peashooter);
+                plants.add(peashooter);
                 break;
             case Config.WALNUT_ID:
-                Plant walnut = new Walnut(location);
+                Plant walnut = new Walnut(location, this);
                 addEntity(walnut);
+                plants.add(walnut);
                 break;
             case Config.REPEATER_ID:
                 Plant repeater = new Repeater(location, this);
                 addEntity(repeater);
+                plants.add(repeater);
                 break;
             default:
                 break;
@@ -99,7 +103,6 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
         cooldownPlants.add(selectedPlant.getId());
         startCooldownTimer(selectedPlant.getId());
         this.selectedPlant = null;
-
     }
 
     private void startCooldownTimer(int plantId) {
@@ -131,6 +134,10 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
 
     public void setSelectedPlant(InventoryItem selectedPlant) {
         this.selectedPlant = selectedPlant;
+    }
+
+    public ArrayList<Plant> getPlants() {
+        return plants;
     }
 
     public int getZombieCount() {
