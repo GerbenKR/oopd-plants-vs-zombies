@@ -69,7 +69,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
                 addEntity(sunflower);
                 break;
             case Config.PEASHOOTER_ID:
-                Plant peashooter = new Peashooter(location);
+                Plant peashooter = new Peashooter(location, this);
                 addEntity(peashooter);
                 break;
             default:
