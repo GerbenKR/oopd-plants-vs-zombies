@@ -6,27 +6,31 @@ import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import com.github.hanyaeger.api.userinput.MouseEnterListener;
 import com.github.hanyaeger.api.userinput.MouseExitListener;
-import com.github.hanyaeger.tutorial.PVZ;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class StartGameButton extends TextEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
-    private PVZ pvz;
+public class ActionButton extends TextEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
 
-    public StartGameButton(Coordinate2D position, PVZ pvz) {
-        super(position, "Start het spel");
+    private Runnable onClick;
+
+    public ActionButton(Coordinate2D position, String text, Runnable onClick) {
+        super(position, text);
+        this.onClick = onClick;
+
+        // Standaard styling
         setFill(Color.WHITE);
         setFont(Font.font("Roboto", FontWeight.BOLD, 30));
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        this.pvz = pvz;
     }
 
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        pvz.setActiveScene(1);
+        if (mouseButton == MouseButton.PRIMARY && onClick != null) {
+            onClick.run();
+        }
     }
 
     @Override
