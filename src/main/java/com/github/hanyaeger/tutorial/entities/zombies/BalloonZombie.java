@@ -5,13 +5,14 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.tutorial.PVZ;
 import com.github.hanyaeger.tutorial.entities.plants.Plant;
+import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 
 import java.util.List;
 
 public class BalloonZombie extends Zombie {
 
-    public BalloonZombie(PVZ pvz, Coordinate2D location) {
-        super(pvz, location, "sprites/balloon-zombie.png", 200, 0.3, 100);
+    public BalloonZombie(PVZ pvz, FirstLevel firstLevel, Coordinate2D location) {
+        super(pvz, firstLevel,  location, "sprites/balloon-zombie.png", 200, 0.1, 100);
     }
 
     @Override

@@ -18,7 +18,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import java.util.ArrayList;
-import com.github.hanyaeger.tutorial.spawners.ZombieSpawner;
+import com.github.hanyaeger.tutorial.entities.spawners.ZombieSpawner;
 import java.util.List;
 
 public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, TileMapContainer {
@@ -28,6 +28,10 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     private ArrayList<Integer> cooldownPlants = new ArrayList<>();
     private ArrayList<InventoryItem> allowedPlants = new ArrayList<>();
     private final SunManager sunManager = new SunManager();
+
+    private int zombieCount = 0;
+    private boolean isFinalWave = false;
+
     public AnnouncementDisplayText announcementDisplayText;
 
     private List<WaveConfig> waves = List.of(
@@ -135,4 +139,21 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     public ArrayList<Plant> getPlants() {
         return plants;
     }
+
+    public int getZombieCount() {
+        return zombieCount;
+    }
+
+    public void setZombieCount(int zombieCount) {
+        this.zombieCount = zombieCount;
+    }
+
+    public boolean isFinalWave() {
+        return isFinalWave;
+    }
+
+    public void setFinalWave(boolean finalWave) {
+        isFinalWave = finalWave;
+    }
+
 }

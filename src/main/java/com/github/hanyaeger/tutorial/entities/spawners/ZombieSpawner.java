@@ -1,4 +1,4 @@
-package com.github.hanyaeger.tutorial.spawners;
+package com.github.hanyaeger.tutorial.entities.spawners;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.EntitySpawner;
@@ -14,11 +14,6 @@ import java.util.Random;
 public class ZombieSpawner extends EntitySpawner {
     private FirstLevel firstLevel;
     private PVZ pvz;
-
-    private static final int START_COLUMN_X = 750;
-    private static final int START_COLUMN_Y = 50;
-    private static final int ROWS = 5;
-    private static final int CELL_HEIGHT = 70;
 
     private final List<WaveConfig> waveConfigs;
     private int waveIndex = 0;
@@ -52,6 +47,7 @@ public class ZombieSpawner extends EntitySpawner {
         }
 
         if (isFinalWave(currentWave)) {
+            firstLevel.setFinalWave(true);
             showFinalWaveStartingAnnouncement();
         }
 
@@ -77,7 +73,7 @@ public class ZombieSpawner extends EntitySpawner {
 
     private void showFinalWaveStartingAnnouncement() {
         if (!finalWaveLogged) {
-            this.firstLevel.announcementDisplayText.setAnnouncementDisplayText("The final wave is starting!");
+            this.firstLevel.announcementDisplayText.showAnnouncement("The final wave is starting!", 3_000);
             finalWaveLogged = true;
         }
     }
@@ -109,19 +105,23 @@ public class ZombieSpawner extends EntitySpawner {
 
             try {
                 Zombie zombie = zombieType.getZombieClass()
-                        .getConstructor(pvz.getClass(), Coordinate2D.class)
-                        .newInstance(pvz, spawnPosition);
+                        .getConstructor(pvz.getClass(), firstLevel.getClass(), Coordinate2D.class)
+                        .newInstance(pvz, firstLevel, spawnPosition);
                 spawn(zombie);
+
+                // Increase the zombie count
+                firstLevel.setZombieCount(firstLevel.getZombieCount() + 1);
             } catch (Exception e) {
-                e.printStackTrace(); // Voor nu: printen. Later eventueel loggen.
+                // Not ideal for production, but we aren't using any logger, so for this exersise it's ok i think
+                e.printStackTrace();
             }
         }
     }
 
     private Coordinate2D getRandomCellPosition() {
-        int row = new Random().nextInt(ROWS);
-        double x = START_COLUMN_X;
-        double y = START_COLUMN_Y + row * CELL_HEIGHT;
+        int row = new Random().nextInt(5);
+        double x = 750;
+        double y = 50 + row * 70;
         return new Coordinate2D(x, y);
     }
 

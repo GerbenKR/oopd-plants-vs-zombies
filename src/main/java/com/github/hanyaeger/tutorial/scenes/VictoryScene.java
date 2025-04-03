@@ -32,7 +32,7 @@ public class VictoryScene extends StaticScene {
         var returnToHome = new ActionButton(
                 new Coordinate2D(getWidth() / 2, getHeight() / 2),
                 "Return to Main Menu",
-                () -> pvz.setActiveScene(1)
+                () -> pvz.setActiveScene(0)
         );
         addEntity(returnToHome);
     }
