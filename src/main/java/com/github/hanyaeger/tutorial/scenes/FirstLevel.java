@@ -83,9 +83,11 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
             case Config.WALNUT_ID:
                 Plant walnut = new Walnut(location);
                 addEntity(walnut);
+                break;
             case Config.REPEATER_ID:
                 Plant repeater = new Repeater(location, this);
                 addEntity(repeater);
+                break;
             default:
                 break;
         }

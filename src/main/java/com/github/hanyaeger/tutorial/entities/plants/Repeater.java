@@ -16,14 +16,9 @@ public class Repeater extends Plant {
     private EntitySpawner spawner;
 
     public Repeater(Coordinate2D location, FirstLevel level) {
-        super(location, Config.REPEATER_HEALTH, Config.SUNFLOWER_COST, Config.REPEATER_ID);
+        super(location, Config.REPEATER_RESOURCE, Config.REPEATER_HEALTH, Config.SUNFLOWER_COST, Config.REPEATER_ID);
         this.level = level;
         doAction();
-    }
-
-    @Override
-    protected void setupEntities() {
-        addEntity(new RepeaterSprite(Config.REPEATER_RESOURCE, new Coordinate2D(0, 0)));
     }
 
     @Override

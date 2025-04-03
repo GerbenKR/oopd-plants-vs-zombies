@@ -18,17 +18,12 @@ public class Sunflower extends Plant {
     private EntitySpawner spawner;
 
     public Sunflower(Coordinate2D location, SunManager manager, FirstLevel level) {
-        super(location, Config.SUNFLOWER_HEALTH, Config.SUNFLOWER_COST, Config.SUNFLOWER_ID);
+        super(location, Config.SUNFLOWER_RESOURCE, Config.SUNFLOWER_HEALTH, Config.SUNFLOWER_COST, Config.SUNFLOWER_ID);
         this.manager = manager;
         this.level = level;
         doAction();
     }
-
-    @Override
-    protected void setupEntities() {
-        addEntity(new SunflowerSprite(Config.SUNFLOWER_RESOURCE, new Coordinate2D(0, 0)));
-    }
-
+    
     @Override
     public void doAction() {
         level.addEntitySpawner(new SunSpawner(this.manager, location));

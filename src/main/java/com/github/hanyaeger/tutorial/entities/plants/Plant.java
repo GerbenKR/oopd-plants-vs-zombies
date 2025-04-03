@@ -11,14 +11,14 @@ import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 
-public abstract class Plant extends DynamicCompositeEntity implements Collider, Collided {
+public abstract class Plant extends SpriteEntity implements Collider, Collided {
     protected int id;
     protected double health;
     protected int cost;
     protected Coordinate2D location;
 
-    public Plant(Coordinate2D initialLocation, double health, int cost, int id) {
-        super(initialLocation);
+    public Plant(Coordinate2D initialLocation, String resource, double health, int cost, int id) {
+        super(resource, initialLocation, new Size(50, 50));
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
 
         this.location = initialLocation;

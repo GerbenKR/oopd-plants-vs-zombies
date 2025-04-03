@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Walnut extends Plant {
     public Walnut(Coordinate2D initialLocation) {
-        super(initialLocation, Config.WALNUT_HEALTH, Config.WALNUT_COST, Config.WALNUT_ID);
+        super(initialLocation, Config.WALNUT_RESOURCE, Config.WALNUT_HEALTH, Config.WALNUT_COST, Config.WALNUT_ID);
     }
 
     @Override
@@ -28,10 +28,5 @@ public class Walnut extends Plant {
                 this.health -= ((Zombie) collider).getDamage();
             }
         }
-    }
-
-    @Override
-    protected void setupEntities() {
-        addEntity(new SunflowerSprite(Config.WALNUT_RESOURCE, new Coordinate2D(0, 0)));
     }
 }

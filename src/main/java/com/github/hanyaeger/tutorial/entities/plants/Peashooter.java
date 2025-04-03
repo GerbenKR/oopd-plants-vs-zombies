@@ -15,14 +15,9 @@ public class Peashooter extends Plant {
     private EntitySpawner spawner;
 
     public Peashooter(Coordinate2D location, FirstLevel level) {
-        super(location, Config.PEASHOOTER_HEALTH, Config.SUNFLOWER_COST, Config.PEASHOOTER_ID);
+        super(location, Config.PEASHOOTER_RESOURCE, Config.PEASHOOTER_HEALTH, Config.SUNFLOWER_COST, Config.PEASHOOTER_ID);
         this.level = level;
         doAction();
-    }
-
-    @Override
-    protected void setupEntities() {
-        addEntity(new PeashooterSprite(Config.PEASHOOTER_RESOURCE, new Coordinate2D(0, 0)));
     }
 
     @Override
