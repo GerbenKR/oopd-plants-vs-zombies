@@ -1,6 +1,8 @@
 package com.github.hanyaeger.tutorial.config;
 
 public class Config {
+    public static final int DEFAULT_SUN_AMOUNT = 50;
+
     // Plants values
     public static final String SUNFLOWER_NAME = "Sunflower";
     public static final String SUNFLOWER_RESOURCE = "sprites/sunflower.gif";
@@ -25,4 +27,7 @@ public class Config {
     public static final int REPEATER_HEALTH = 300;
     public static final int REPEATER_COST = 200;
     public static final int REPEATER_ID = 3;
+
+//    Items
+    public static final int PEA_DAMAGE = 25;
 }

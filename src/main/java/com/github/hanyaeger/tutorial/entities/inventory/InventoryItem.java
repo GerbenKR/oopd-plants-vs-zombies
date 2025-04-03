@@ -1,9 +1,9 @@
 package com.github.hanyaeger.tutorial.entities.inventory;
 
 public class InventoryItem {
-    private int cost;
-    private int id;
-    private String name;
+    private final int cost;
+    private final int id;
+    private final String name;
 
     public InventoryItem(int cost, int id, String name) {
         this.cost = cost;

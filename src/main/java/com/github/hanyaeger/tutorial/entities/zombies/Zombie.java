@@ -9,19 +9,18 @@ import com.github.hanyaeger.tutorial.PVZ;
 import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 
 public abstract class Zombie extends DynamicSpriteEntity implements Collided, Collider, SceneBorderTouchingWatcher {
-    private PVZ pvz;
-    private FirstLevel firstLevel;
-    private Coordinate2D location;
+    private final PVZ pvz;
+    private final FirstLevel firstLevel;
+    private final double speed;
+    private final int damage;
+
     private int health;
-    private double speed;
-    private int damage;
 
     public Zombie(PVZ pvz, FirstLevel firstLevel, Coordinate2D location, String image, int health, double speed, int damage) {
         super(image, location, new Size(50,77));
 
         this.pvz = pvz;
         this.firstLevel = firstLevel;
-        this.location = location;
         this.health = health;
         this.speed = speed;
         this.damage = damage;
@@ -32,7 +31,7 @@ public abstract class Zombie extends DynamicSpriteEntity implements Collided, Co
     // When a zombie hits the (left) scene border, the game is over
     @Override
     public void notifyBoundaryTouching(SceneBorder sceneBorder) {
-        pvz.setActiveScene(2); //Game over screen
+        pvz.setActiveScene(2); // Game over screen
     }
 
     public void subtractHealth(int amount) {

@@ -73,7 +73,7 @@ public class ZombieSpawner extends EntitySpawner {
 
     private void showFinalWaveStartingAnnouncement() {
         if (!finalWaveLogged) {
-            this.firstLevel.announcementDisplayText.showAnnouncement("The final wave is starting!", 3_000);
+            this.firstLevel.showAnnouncement("The final wave is starting!", 3_000);
             finalWaveLogged = true;
         }
     }

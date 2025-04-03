@@ -11,7 +11,8 @@ import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 import java.util.List;
 
 public class Peashooter extends Plant {
-    private FirstLevel level;
+    private final FirstLevel level;
+
     private EntitySpawner spawner;
 
     public Peashooter(Coordinate2D location, FirstLevel level) {
@@ -28,10 +29,11 @@ public class Peashooter extends Plant {
 
     @Override
     public void onCollision(List<Collider> list) {
-        if(this.getHealth() <= 0) {
+        if (this.getHealth() <= 0) {
             remove();
-            level.getSpawners().remove(spawner);
+            this.level.getSpawners().remove(spawner);
             this.level.getPlants().remove(this);
+
         }
 
         for (Collider collider : list) {

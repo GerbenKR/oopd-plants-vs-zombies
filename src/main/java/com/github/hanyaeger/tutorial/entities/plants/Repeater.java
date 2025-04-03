@@ -8,11 +8,11 @@ import com.github.hanyaeger.tutorial.entities.spawners.PeaSpawner;
 import com.github.hanyaeger.tutorial.entities.zombies.Zombie;
 import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Repeater extends Plant {
-    private FirstLevel level;
+    private final FirstLevel level;
+    
     private EntitySpawner spawner;
 
     public Repeater(Coordinate2D location, FirstLevel level) {

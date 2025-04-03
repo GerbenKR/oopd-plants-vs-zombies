@@ -24,7 +24,7 @@ public class SunSpawner extends EntitySpawner {
 
     @Override
     protected void spawnEntities(){
-        if(this.location != null) {
+        if (this.location != null) {
             spawn(new Sun(this.location, this.manager));
         } else {
             spawn(new Sun(randomLocation(), this.manager));

@@ -11,10 +11,10 @@ import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 
 import java.util.List;
 
-
 public class Sunflower extends Plant {
-    private SunManager manager;
-    private FirstLevel level;
+    private final SunManager manager;
+    private final FirstLevel level;
+    
     private EntitySpawner spawner;
 
     public Sunflower(Coordinate2D location, SunManager manager, FirstLevel level) {

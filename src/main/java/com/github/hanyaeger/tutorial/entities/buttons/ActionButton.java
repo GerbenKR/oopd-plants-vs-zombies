@@ -13,14 +13,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class ActionButton extends TextEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
-
-    private Runnable onClick;
+    private final Runnable onClick;
 
     public ActionButton(Coordinate2D position, String text, Runnable onClick) {
         super(position, text);
         this.onClick = onClick;
 
-        // Standaard styling
         setFill(Color.WHITE);
         setFont(Font.font("Roboto", FontWeight.BOLD, 30));
         setAnchorPoint(AnchorPoint.CENTER_CENTER);

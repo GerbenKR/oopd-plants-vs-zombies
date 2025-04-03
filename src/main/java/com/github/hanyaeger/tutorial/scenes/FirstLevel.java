@@ -22,24 +22,26 @@ import com.github.hanyaeger.tutorial.entities.spawners.ZombieSpawner;
 import java.util.List;
 
 public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, TileMapContainer {
-    private PVZ pvz;
-    private InventoryItem selectedPlant;
-    private ArrayList<Plant> plants = new ArrayList<>();
-    private ArrayList<Integer> cooldownPlants = new ArrayList<>();
-    private ArrayList<InventoryItem> allowedPlants = new ArrayList<>();
+    private final PVZ pvz;
     private final SunManager sunManager = new SunManager();
 
+    private final ArrayList<Plant> plants = new ArrayList<>();
+    private final ArrayList<Integer> cooldownPlants = new ArrayList<>();
+    private final ArrayList<InventoryItem> allowedPlants = new ArrayList<>();
+
+    private final AnnouncementDisplayText announcementDisplayText = new AnnouncementDisplayText(new Coordinate2D(getWidth() / 2, getHeight() / 2));
+
+//    This variable contains the waves this level contains
+    private final List<WaveConfig> waves = List.of(
+            new WaveConfig(WaveType.WAITING, 15_000, 0),        // 15 second waiting
+            new WaveConfig(WaveType.WAVE, 60_000, 10_000),      // 1 minute, each 10 sec a zombie
+            new WaveConfig(WaveType.WAVE, 120_000, 8_000),      // 2 minutes, each 8 sec a zombie
+            new WaveConfig(WaveType.FINAL_WAVE, 30_000, 5_000)  // 30 sec, each 5 sec a zombie
+    );
+
+    private InventoryItem selectedPlant;
     private int zombieCount = 0;
     private boolean isFinalWave = false;
-
-    public AnnouncementDisplayText announcementDisplayText;
-
-    private List<WaveConfig> waves = List.of(
-            new WaveConfig(WaveType.WAITING, 15_000, 0), // 15 seconden wachten
-            new WaveConfig(WaveType.WAVE, 60_000, 10_000),    // 1 minuut, elke 10 sec een zombie
-            new WaveConfig(WaveType.WAVE, 120_000, 8_000),   // 2 minuten, elke 9 sec een zombie
-            new WaveConfig(WaveType.FINAL_WAVE, 30_000, 5_000)     // 30 sec, elke 5 sec een zombie
-    );
 
     public FirstLevel(PVZ pvz) {
         this.pvz = pvz;
@@ -57,9 +59,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
 
     @Override
     public void setupEntities() {
-        announcementDisplayText = new AnnouncementDisplayText(new Coordinate2D(getWidth() / 2, getHeight() / 2));
-
-        addEntity(announcementDisplayText);
+        addEntity(this.announcementDisplayText);
         addEntity(this.sunManager.getSunDisplayText());
 
         for (int index = 0; index < this.getAllowedPlants().size(); index++) {
@@ -118,6 +118,10 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     @Override
     public void setupTileMaps() {
         addTileMap(new GrassTileMap(this));
+    }
+
+    public void showAnnouncement(String text, long durationMs) {
+        announcementDisplayText.showAnnouncement(text, durationMs);
     }
 
     public ArrayList<Integer> getCooldownPlants() {

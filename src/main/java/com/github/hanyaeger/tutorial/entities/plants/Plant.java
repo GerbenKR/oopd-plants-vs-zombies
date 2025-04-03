@@ -2,13 +2,9 @@ package com.github.hanyaeger.tutorial.entities.plants;
 
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
-import com.github.hanyaeger.api.entities.CompositeEntity;
-import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
-import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 
 public abstract class Plant extends SpriteEntity implements Collider, Collided {
@@ -29,20 +25,12 @@ public abstract class Plant extends SpriteEntity implements Collider, Collided {
 
     public abstract void doAction();
 
-    public int getId() {
-        return id;
-    }
-
     public void setHealth(int health) {
         this.health = health;
     }
 
     public int getHealth() {
         return this.health;
-    }
-
-    public int getCost() {
-        return this.cost;
     }
 
     public Coordinate2D getLocation() {

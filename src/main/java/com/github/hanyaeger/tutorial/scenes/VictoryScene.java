@@ -23,7 +23,7 @@ public class VictoryScene extends StaticScene {
     }
 
     public void setupEntities(){
-        var title = new TextEntity(new Coordinate2D(getWidth() / 2, 80), "Spel gewonnen!");
+        var title = new TextEntity(new Coordinate2D(getWidth() / 2, 80), "You won!");
         title.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         title.setFill(Color.DARKGREEN);
         title.setFont(Font.font("Roboto", FontWeight.BOLD, 60));

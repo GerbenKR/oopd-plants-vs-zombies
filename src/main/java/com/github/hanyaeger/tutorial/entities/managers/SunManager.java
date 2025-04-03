@@ -1,18 +1,16 @@
 package com.github.hanyaeger.tutorial.entities.managers;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.entities.impl.TextEntity;
+import com.github.hanyaeger.tutorial.config.Config;
 import com.github.hanyaeger.tutorial.entities.displays.SunDisplayText;
-import com.github.hanyaeger.tutorial.entities.items.Sun;
-import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 
 public class SunManager {
+    private final SunDisplayText sunDisplayText;
+
     private int sunAmount;
-    private TextEntity sunDisplay;
-    private SunDisplayText sunDisplayText;
 
     public SunManager() {
-        this.sunAmount = 50;
+        this.sunAmount = Config.DEFAULT_SUN_AMOUNT;
         this.sunDisplayText = new SunDisplayText(new Coordinate2D(200, 10));
         this.sunDisplayText.setSunDisplayText(sunAmount);
     }

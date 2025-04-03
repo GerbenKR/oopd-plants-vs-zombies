@@ -12,8 +12,6 @@ import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
-import java.nio.file.FileStore;
-
 public class GrassTile extends RectangleEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
     private final FirstLevel level;
     private final Coordinate2D position;
