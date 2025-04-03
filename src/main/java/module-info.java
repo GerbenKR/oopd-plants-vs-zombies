@@ -3,12 +3,12 @@ module waterworld {
     requires java.desktop;
     requires com.google.guice;
 
-    exports com.github.hanyaeger.tutorial;
-    exports com.github.hanyaeger.tutorial.entities.map;
+    exports oopd.pvz;
+    exports oopd.pvz.entities.map;
 
     opens audio;
     opens backgrounds;
     opens sprites;
 
-    exports com.github.hanyaeger.tutorial.entities.buttons;
+    exports oopd.pvz.entities.buttons;
 }
