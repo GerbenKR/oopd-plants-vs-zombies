@@ -66,8 +66,6 @@ public class ZombieSpawner extends EntitySpawner {
             var spawnPosition = getRandomCellPosition();
             var zombieType = getRandomZombieType();
 
-            System.out.println("Lets spawn a zombie!" + zombieType);
-
             try {
                 Zombie zombie = zombieType.getZombieClass()
                         .getConstructor(Coordinate2D.class)
