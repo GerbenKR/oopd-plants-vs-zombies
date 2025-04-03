@@ -10,7 +10,7 @@ import com.github.hanyaeger.tutorial.scenes.VictoryScene;
 public class PVZ extends YaegerGame {
     @Override
     public void setupGame() {
-        setGameTitle("Planten tegen zombies");
+        setGameTitle("Plants vs Zombies");
         setSize(new Size(1000, 429));
     }
 
