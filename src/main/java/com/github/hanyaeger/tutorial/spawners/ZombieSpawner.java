@@ -15,11 +15,6 @@ public class ZombieSpawner extends EntitySpawner {
     private FirstLevel firstLevel;
     private PVZ pvz;
 
-    private static final int START_COLUMN_X = 750;
-    private static final int START_COLUMN_Y = 50;
-    private static final int ROWS = 5;
-    private static final int CELL_HEIGHT = 70;
-
     private final List<WaveConfig> waveConfigs;
     private int waveIndex = 0;
     private long waveStartTime;
@@ -119,9 +114,9 @@ public class ZombieSpawner extends EntitySpawner {
     }
 
     private Coordinate2D getRandomCellPosition() {
-        int row = new Random().nextInt(ROWS);
-        double x = START_COLUMN_X;
-        double y = START_COLUMN_Y + row * CELL_HEIGHT;
+        int row = new Random().nextInt(5);
+        double x = 750;
+        double y = 50 + row * 70;
         return new Coordinate2D(x, y);
     }
 
