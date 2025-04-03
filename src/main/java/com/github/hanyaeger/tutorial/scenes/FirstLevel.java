@@ -13,6 +13,7 @@ import com.github.hanyaeger.tutorial.WaveConfig;
 import com.github.hanyaeger.tutorial.entities.map.GrassTileMap;
 import com.github.hanyaeger.tutorial.entities.plants.*;
 import com.github.hanyaeger.tutorial.entities.spawners.SunSpawner;
+import com.github.hanyaeger.tutorial.enums.WaveType;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
@@ -29,10 +30,10 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     public AnnouncementDisplayText announcementDisplayText;
 
     private List<WaveConfig> waves = List.of(
-            new WaveConfig(WaveConfig.WaveType.WAITING, 15_000, 0), // 15 seconden wachten
-            new WaveConfig(WaveConfig.WaveType.WAVE, 60_000, 10_000),    // 1 minuut, elke 10 sec een zombie
-            new WaveConfig(WaveConfig.WaveType.WAVE, 120_000, 8_000),   // 2 minuten, elke 9 sec een zombie
-            new WaveConfig(WaveConfig.WaveType.FINAL_WAVE, 30_000, 5_000)     // 30 sec, elke 5 sec een zombie
+            new WaveConfig(WaveType.WAITING, 15_000, 0), // 15 seconden wachten
+            new WaveConfig(WaveType.WAVE, 60_000, 10_000),    // 1 minuut, elke 10 sec een zombie
+            new WaveConfig(WaveType.WAVE, 120_000, 8_000),   // 2 minuten, elke 9 sec een zombie
+            new WaveConfig(WaveType.FINAL_WAVE, 30_000, 5_000)     // 30 sec, elke 5 sec een zombie
     );
 
     public FirstLevel(PVZ pvz) {
@@ -53,8 +54,6 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     public void setupEntities() {
         announcementDisplayText = new AnnouncementDisplayText(new Coordinate2D(getWidth() / 2, getHeight() / 2));
 
-        announcementDisplayText.setAnnouncementDisplayText("dfasdfsad");
-
         addEntity(announcementDisplayText);
 
         addEntity(this.sunManager.getSunDisplayText());
@@ -66,7 +65,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
 
     @Override
     public void setupEntitySpawners() {
-        addEntitySpawner(new ZombieSpawner(this, waves));
+        addEntitySpawner(new ZombieSpawner(pvz, this, waves));
         addEntitySpawner(new SunSpawner(this.sunManager));
     }
 

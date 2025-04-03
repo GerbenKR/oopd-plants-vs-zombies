@@ -2,16 +2,18 @@ package com.github.hanyaeger.tutorial.spawners;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.EntitySpawner;
+import com.github.hanyaeger.tutorial.PVZ;
 import com.github.hanyaeger.tutorial.WaveConfig;
 import com.github.hanyaeger.tutorial.entities.zombies.Zombie;
-import com.github.hanyaeger.tutorial.entities.zombies.ZombieType;
+import com.github.hanyaeger.tutorial.enums.ZombieType;
+import com.github.hanyaeger.tutorial.enums.WaveType;
 import com.github.hanyaeger.tutorial.scenes.FirstLevel;
-
 import java.util.List;
 import java.util.Random;
 
 public class ZombieSpawner extends EntitySpawner {
     private FirstLevel firstLevel;
+    private PVZ pvz;
 
     private static final int START_COLUMN_X = 750;
     private static final int START_COLUMN_Y = 50;
@@ -24,21 +26,24 @@ public class ZombieSpawner extends EntitySpawner {
     private long lastSpawnTime;
     private boolean finalWaveLogged = false;
 
-    public ZombieSpawner(FirstLevel firstLevel, List<WaveConfig> waveConfigs) {
-        super(0); // Interval wordt per wave dynamisch bepaald
+    public ZombieSpawner(PVZ pvz, FirstLevel firstLevel, List<WaveConfig> waveConfigs) {
+//        We start with a interval of 0ms, in the method spawnEntities() we set the interval based on the given spawn rate via WaveConfig for each wave
+    super(0);
 
+    this.pvz = pvz;
         this.firstLevel = firstLevel;
 
         this.waveConfigs = waveConfigs;
         this.waveStartTime = System.currentTimeMillis();
         this.lastSpawnTime = 0;
+
     }
 
     @Override
     protected void spawnEntities() {
         if (allWavesCompleted()) return;
 
-        WaveConfig currentWave = waveConfigs.get(waveIndex);
+        var currentWave = waveConfigs.get(waveIndex);
         long now = System.currentTimeMillis();
 
         if (isWaitingWave(currentWave)) {
@@ -63,11 +68,11 @@ public class ZombieSpawner extends EntitySpawner {
     }
 
     private boolean isWaitingWave(WaveConfig wave) {
-        return wave.getWaveType() == WaveConfig.WaveType.WAITING;
+        return wave.getWaveType() == WaveType.WAITING;
     }
 
     private boolean isFinalWave(WaveConfig wave) {
-        return wave.getWaveType() == WaveConfig.WaveType.FINAL_WAVE;
+        return wave.getWaveType() == WaveType.FINAL_WAVE;
     }
 
     private void showFinalWaveStartingAnnouncement() {
@@ -99,13 +104,13 @@ public class ZombieSpawner extends EntitySpawner {
         if (now - lastSpawnTime >= wave.getSpawnRateMs()) {
             lastSpawnTime = now;
 
-            Coordinate2D spawnPosition = getRandomCellPosition();
-            ZombieType zombieType = getRandomZombieType();
+            var spawnPosition = getRandomCellPosition();
+            var zombieType = getRandomZombieType();
 
             try {
                 Zombie zombie = zombieType.getZombieClass()
-                        .getConstructor(Coordinate2D.class)
-                        .newInstance(spawnPosition);
+                        .getConstructor(pvz.getClass(), Coordinate2D.class)
+                        .newInstance(pvz, spawnPosition);
                 spawn(zombie);
             } catch (Exception e) {
                 e.printStackTrace(); // Voor nu: printen. Later eventueel loggen.

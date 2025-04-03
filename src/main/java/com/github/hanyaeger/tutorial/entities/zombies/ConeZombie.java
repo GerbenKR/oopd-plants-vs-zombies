@@ -3,14 +3,15 @@ package com.github.hanyaeger.tutorial.entities.zombies;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Direction;
+import com.github.hanyaeger.tutorial.PVZ;
 import com.github.hanyaeger.tutorial.entities.plants.Plant;
 
 import java.util.List;
 
 public class ConeZombie extends Zombie {
 
-    public ConeZombie(Coordinate2D location) {
-        super(location, "sprites/cone-zombie.gif", 280, 0.3, 100);
+    public ConeZombie(PVZ pvz, Coordinate2D location) {
+        super(pvz, location, "sprites/cone-zombie.gif", 280, 0.3, 100);
     }
 
     @Override
