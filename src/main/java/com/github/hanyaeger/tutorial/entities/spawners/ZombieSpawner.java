@@ -7,12 +7,12 @@ import com.github.hanyaeger.tutorial.WaveConfig;
 import com.github.hanyaeger.tutorial.entities.zombies.Zombie;
 import com.github.hanyaeger.tutorial.enums.ZombieType;
 import com.github.hanyaeger.tutorial.enums.WaveType;
-import com.github.hanyaeger.tutorial.scenes.FirstLevel;
+import com.github.hanyaeger.tutorial.scenes.FirstLevelScene;
 import java.util.List;
 import java.util.Random;
 
 public class ZombieSpawner extends EntitySpawner {
-    private FirstLevel firstLevel;
+    private FirstLevelScene firstLevelScene;
     private PVZ pvz;
 
     private final List<WaveConfig> waveConfigs;
@@ -21,12 +21,12 @@ public class ZombieSpawner extends EntitySpawner {
     private long lastSpawnTime;
     private boolean finalWaveLogged = false;
 
-    public ZombieSpawner(PVZ pvz, FirstLevel firstLevel, List<WaveConfig> waveConfigs) {
+    public ZombieSpawner(PVZ pvz, FirstLevelScene firstLevelScene, List<WaveConfig> waveConfigs) {
 //        We start with a interval of 0ms, in the method spawnEntities() we set the interval based on the given spawn rate via WaveConfig for each wave
     super(0);
 
     this.pvz = pvz;
-        this.firstLevel = firstLevel;
+        this.firstLevelScene = firstLevelScene;
 
         this.waveConfigs = waveConfigs;
         this.waveStartTime = System.currentTimeMillis();
@@ -47,7 +47,7 @@ public class ZombieSpawner extends EntitySpawner {
         }
 
         if (isFinalWave(currentWave)) {
-            firstLevel.setFinalWave(true);
+            firstLevelScene.setFinalWave(true);
             showFinalWaveStartingAnnouncement();
         }
 
@@ -73,7 +73,7 @@ public class ZombieSpawner extends EntitySpawner {
 
     private void showFinalWaveStartingAnnouncement() {
         if (!finalWaveLogged) {
-            this.firstLevel.showAnnouncement("The final wave is starting!", 3_000);
+            this.firstLevelScene.showAnnouncement("The final wave is starting!", 3_000);
             finalWaveLogged = true;
         }
     }
@@ -105,12 +105,12 @@ public class ZombieSpawner extends EntitySpawner {
 
             try {
                 Zombie zombie = zombieType.getZombieClass()
-                        .getConstructor(pvz.getClass(), firstLevel.getClass(), Coordinate2D.class)
-                        .newInstance(pvz, firstLevel, spawnPosition);
+                        .getConstructor(pvz.getClass(), firstLevelScene.getClass(), Coordinate2D.class)
+                        .newInstance(pvz, firstLevelScene, spawnPosition);
                 spawn(zombie);
 
                 // Increase the zombie count
-                firstLevel.setZombieCount(firstLevel.getZombieCount() + 1);
+                firstLevelScene.setZombieCount(firstLevelScene.getZombieCount() + 1);
             } catch (Exception e) {
                 // Not ideal for production, but we aren't using any logger, so for this exersise it's ok i think
                 e.printStackTrace();

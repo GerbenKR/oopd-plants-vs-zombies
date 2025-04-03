@@ -7,16 +7,16 @@ import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import com.github.hanyaeger.api.userinput.MouseEnterListener;
 import com.github.hanyaeger.api.userinput.MouseExitListener;
 import com.github.hanyaeger.tutorial.entities.plants.Plant;
-import com.github.hanyaeger.tutorial.scenes.FirstLevel;
+import com.github.hanyaeger.tutorial.scenes.FirstLevelScene;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
 public class GrassTile extends RectangleEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
-    private final FirstLevel level;
+    private final FirstLevelScene level;
     private final Coordinate2D position;
 
-    public GrassTile(Coordinate2D position, Size size, FirstLevel level) {
+    public GrassTile(Coordinate2D position, Size size, FirstLevelScene level) {
         super(position);
         this.position = new Coordinate2D(position.getX() + 30, position.getY() + 35);
         this.level = level;

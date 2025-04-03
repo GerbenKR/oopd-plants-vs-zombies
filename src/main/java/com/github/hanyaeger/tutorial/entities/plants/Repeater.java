@@ -6,16 +6,16 @@ import com.github.hanyaeger.api.entities.EntitySpawner;
 import com.github.hanyaeger.tutorial.config.Config;
 import com.github.hanyaeger.tutorial.entities.spawners.PeaSpawner;
 import com.github.hanyaeger.tutorial.entities.zombies.Zombie;
-import com.github.hanyaeger.tutorial.scenes.FirstLevel;
+import com.github.hanyaeger.tutorial.scenes.FirstLevelScene;
 
 import java.util.List;
 
 public class Repeater extends Plant {
-    private final FirstLevel level;
-    
+    private final FirstLevelScene level;
+
     private EntitySpawner spawner;
 
-    public Repeater(Coordinate2D location, FirstLevel level) {
+    public Repeater(Coordinate2D location, FirstLevelScene level) {
         super(location, Config.REPEATER_RESOURCE, Config.REPEATER_HEALTH, Config.SUNFLOWER_COST, Config.REPEATER_ID);
         this.level = level;
         doAction();

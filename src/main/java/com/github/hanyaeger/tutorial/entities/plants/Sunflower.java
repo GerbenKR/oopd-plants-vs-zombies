@@ -7,17 +7,17 @@ import com.github.hanyaeger.tutorial.config.Config;
 import com.github.hanyaeger.tutorial.entities.managers.SunManager;
 import com.github.hanyaeger.tutorial.entities.spawners.SunSpawner;
 import com.github.hanyaeger.tutorial.entities.zombies.Zombie;
-import com.github.hanyaeger.tutorial.scenes.FirstLevel;
+import com.github.hanyaeger.tutorial.scenes.FirstLevelScene;
 
 import java.util.List;
 
 public class Sunflower extends Plant {
     private final SunManager manager;
-    private final FirstLevel level;
-    
+    private final FirstLevelScene level;
+
     private EntitySpawner spawner;
 
-    public Sunflower(Coordinate2D location, SunManager manager, FirstLevel level) {
+    public Sunflower(Coordinate2D location, SunManager manager, FirstLevelScene level) {
         super(location, Config.SUNFLOWER_RESOURCE, Config.SUNFLOWER_HEALTH, Config.SUNFLOWER_COST, Config.SUNFLOWER_ID);
         this.manager = manager;
         this.level = level;

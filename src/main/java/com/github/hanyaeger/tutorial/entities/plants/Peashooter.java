@@ -6,16 +6,16 @@ import com.github.hanyaeger.api.entities.EntitySpawner;
 import com.github.hanyaeger.tutorial.config.Config;
 import com.github.hanyaeger.tutorial.entities.spawners.PeaSpawner;
 import com.github.hanyaeger.tutorial.entities.zombies.Zombie;
-import com.github.hanyaeger.tutorial.scenes.FirstLevel;
+import com.github.hanyaeger.tutorial.scenes.FirstLevelScene;
 
 import java.util.List;
 
 public class Peashooter extends Plant {
-    private final FirstLevel level;
+    private final FirstLevelScene level;
 
     private EntitySpawner spawner;
 
-    public Peashooter(Coordinate2D location, FirstLevel level) {
+    public Peashooter(Coordinate2D location, FirstLevelScene level) {
         super(location, Config.PEASHOOTER_RESOURCE, Config.PEASHOOTER_HEALTH, Config.SUNFLOWER_COST, Config.PEASHOOTER_ID);
         this.level = level;
         doAction();

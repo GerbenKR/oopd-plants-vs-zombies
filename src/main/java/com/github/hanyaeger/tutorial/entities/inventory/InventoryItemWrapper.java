@@ -9,7 +9,7 @@ import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import com.github.hanyaeger.api.userinput.MouseEnterListener;
 import com.github.hanyaeger.api.userinput.MouseExitListener;
 import com.github.hanyaeger.tutorial.entities.managers.SunManager;
-import com.github.hanyaeger.tutorial.scenes.FirstLevel;
+import com.github.hanyaeger.tutorial.scenes.FirstLevelScene;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 
@@ -19,10 +19,10 @@ public class InventoryItemWrapper extends CompositeEntity implements MouseButton
 
     private final InventoryItem inventoryItem;
     private final SunManager sunManager;
-    private final FirstLevel level;
+    private final FirstLevelScene level;
     private final InventoryItemBox inventoryItemBox = new InventoryItemBox(new Coordinate2D(0, 0), new Size(WIDTH, HEIGHT));
 
-    public InventoryItemWrapper(InventoryItem item, int index, SunManager sunManager, FirstLevel level) {
+    public InventoryItemWrapper(InventoryItem item, int index, SunManager sunManager, FirstLevelScene level) {
         super(new Coordinate2D(20, 10 + (index * 100)));
         this.inventoryItem = item;
         this.level = level;

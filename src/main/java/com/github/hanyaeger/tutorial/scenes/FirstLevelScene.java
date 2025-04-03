@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import com.github.hanyaeger.tutorial.entities.spawners.ZombieSpawner;
 import java.util.List;
 
-public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, TileMapContainer {
+public class FirstLevelScene extends DynamicScene implements EntitySpawnerContainer, TileMapContainer {
     private final PVZ pvz;
     private final SunManager sunManager = new SunManager();
 
@@ -43,7 +43,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     private int zombieCount = 0;
     private boolean isFinalWave = false;
 
-    public FirstLevel(PVZ pvz) {
+    public FirstLevelScene(PVZ pvz) {
         this.pvz = pvz;
 
         this.allowedPlants.add(new InventoryItem(Config.SUNFLOWER_COST, Config.SUNFLOWER_ID, Config.SUNFLOWER_NAME));

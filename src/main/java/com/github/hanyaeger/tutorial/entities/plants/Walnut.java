@@ -4,14 +4,14 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.tutorial.config.Config;
 import com.github.hanyaeger.tutorial.entities.zombies.Zombie;
-import com.github.hanyaeger.tutorial.scenes.FirstLevel;
+import com.github.hanyaeger.tutorial.scenes.FirstLevelScene;
 
 import java.util.List;
 
 public class Walnut extends Plant {
-    private FirstLevel level;
+    private FirstLevelScene level;
 
-    public Walnut(Coordinate2D initialLocation, FirstLevel level) {
+    public Walnut(Coordinate2D initialLocation, FirstLevelScene level) {
         super(initialLocation, Config.WALNUT_RESOURCE, Config.WALNUT_HEALTH, Config.WALNUT_COST, Config.WALNUT_ID);
         this.level = level;
     }

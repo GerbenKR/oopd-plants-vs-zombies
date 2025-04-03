@@ -6,21 +6,21 @@ import com.github.hanyaeger.api.entities.*;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.tutorial.PVZ;
-import com.github.hanyaeger.tutorial.scenes.FirstLevel;
+import com.github.hanyaeger.tutorial.scenes.FirstLevelScene;
 
 public abstract class Zombie extends DynamicSpriteEntity implements Collided, Collider, SceneBorderTouchingWatcher {
     private final PVZ pvz;
-    private final FirstLevel firstLevel;
+    private final FirstLevelScene firstLevelScene;
     private final double speed;
     private final int damage;
 
     private int health;
 
-    public Zombie(PVZ pvz, FirstLevel firstLevel, Coordinate2D location, String image, int health, double speed, int damage) {
+    public Zombie(PVZ pvz, FirstLevelScene firstLevelScene, Coordinate2D location, String image, int health, double speed, int damage) {
         super(image, location, new Size(50,77));
 
         this.pvz = pvz;
-        this.firstLevel = firstLevel;
+        this.firstLevelScene = firstLevelScene;
         this.health = health;
         this.speed = speed;
         this.damage = damage;
@@ -39,11 +39,11 @@ public abstract class Zombie extends DynamicSpriteEntity implements Collided, Co
 
         if (this.health <= 0) {
             remove();
-            firstLevel.setZombieCount(firstLevel.getZombieCount() - 1);
+            firstLevelScene.setZombieCount(firstLevelScene.getZombieCount() - 1);
         }
 
         // When the zombie count is 0 & we are in the final wave, then the user won
-        if (firstLevel.getZombieCount() == 0 && firstLevel.isFinalWave()) {
+        if (firstLevelScene.getZombieCount() == 0 && firstLevelScene.isFinalWave()) {
             pvz.setActiveScene(3);
         }
     }
