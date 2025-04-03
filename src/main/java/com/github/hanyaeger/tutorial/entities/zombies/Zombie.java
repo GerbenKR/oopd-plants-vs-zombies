@@ -33,7 +33,11 @@ public abstract class Zombie extends DynamicSpriteEntity implements Collided, Co
     }
 
     public void subtractHealth(int amount) {
-        health -= amount;
+        this.health -= amount;
+
+        if (this.health <= 0) {
+            remove();
+        }
     }
 
     public int getDamage() {
