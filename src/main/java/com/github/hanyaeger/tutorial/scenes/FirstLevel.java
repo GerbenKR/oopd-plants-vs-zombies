@@ -53,8 +53,6 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     public void setupEntities() {
         announcementDisplayText = new AnnouncementDisplayText(new Coordinate2D(getWidth() / 2, getHeight() / 2));
 
-        announcementDisplayText.setAnnouncementDisplayText("dfasdfsad");
-
         addEntity(announcementDisplayText);
 
         addEntity(this.sunManager.getSunDisplayText());
