@@ -1,10 +1,7 @@
 package com.github.hanyaeger.tutorial.entities.plants;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.entities.EntitySpawner;
-import com.github.hanyaeger.core.entities.EntityCollection;
 import com.github.hanyaeger.tutorial.config.Config;
-import com.github.hanyaeger.tutorial.entities.items.Sun;
 import com.github.hanyaeger.tutorial.entities.managers.SunManager;
 import com.github.hanyaeger.tutorial.entities.spawners.SunSpawner;
 import com.github.hanyaeger.tutorial.scenes.FirstLevel;
