@@ -12,7 +12,7 @@ import java.util.List;
 public class ConeZombie extends Zombie {
 
     public ConeZombie(PVZ pvz, FirstLevel firstLevel, Coordinate2D location) {
-        super(pvz, firstLevel, location, "sprites/cone-zombie.gif", 280, 0.3, 100);
+        super(pvz, firstLevel, location, "sprites/cone-zombie.gif", 280, 0.1, 100);
     }
 
     @Override

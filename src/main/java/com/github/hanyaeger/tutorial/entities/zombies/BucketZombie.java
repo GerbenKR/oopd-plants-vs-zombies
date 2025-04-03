@@ -12,7 +12,7 @@ import java.util.List;
 public class BucketZombie extends Zombie {
 
     public BucketZombie(PVZ pvz, FirstLevel firstLevel, Coordinate2D location) {
-        super(pvz, firstLevel, location, "sprites/bucket-zombie.gif", 650, 0.3, 100);
+        super(pvz, firstLevel, location, "sprites/bucket-zombie.gif", 650, 0.1, 100);
     }
 
     @Override
