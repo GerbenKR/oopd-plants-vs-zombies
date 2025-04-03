@@ -1,4 +1,4 @@
-package com.github.hanyaeger.tutorial.spawners;
+package com.github.hanyaeger.tutorial.entities.spawners;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.EntitySpawner;

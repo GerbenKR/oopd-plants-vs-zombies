@@ -18,7 +18,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import java.util.ArrayList;
-import com.github.hanyaeger.tutorial.spawners.ZombieSpawner;
+import com.github.hanyaeger.tutorial.entities.spawners.ZombieSpawner;
 import java.util.List;
 
 public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, TileMapContainer {
