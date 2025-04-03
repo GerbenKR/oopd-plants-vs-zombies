@@ -31,13 +31,9 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     public AnnouncementDisplayText announcementDisplayText;
 
     private List<WaveConfig> waves = List.of(
-//            new WaveConfig(WaveConfig.WaveType.WAITING, 15_000, 0), // 15 seconden wachten
-//            new WaveConfig(WaveConfig.WaveType.WAVE, 60_000, 10_000),    // 1 minuut, elke 10 sec een zombie
-//            new WaveConfig(WaveConfig.WaveType.WAVE, 120_000, 8_000),   // 2 minuten, elke 9 sec een zombie
-//            new WaveConfig(WaveConfig.WaveType.FINAL_WAVE, 30_000, 5_000)     // 30 sec, elke 5 sec een zombie
-
-
-            new WaveConfig(WaveConfig.WaveType.WAITING, 5_000, 0), // 15 seconden wachten
+            new WaveConfig(WaveConfig.WaveType.WAITING, 15_000, 0), // 15 seconden wachten
+            new WaveConfig(WaveConfig.WaveType.WAVE, 60_000, 10_000),    // 1 minuut, elke 10 sec een zombie
+            new WaveConfig(WaveConfig.WaveType.WAVE, 120_000, 8_000),   // 2 minuten, elke 9 sec een zombie
             new WaveConfig(WaveConfig.WaveType.FINAL_WAVE, 30_000, 5_000)     // 30 sec, elke 5 sec een zombie
     );
 
