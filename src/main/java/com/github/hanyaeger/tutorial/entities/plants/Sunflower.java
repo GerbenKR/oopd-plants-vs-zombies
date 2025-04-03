@@ -41,7 +41,6 @@ public class Sunflower extends Plant {
         for (Collider collider : list) {
             if (collider instanceof Zombie) {
                 this.setHealth(this.getHealth() - ((Zombie) collider).getDamage());
-                this.health -= ((Zombie) collider).getDamage();
 
                 if (this.health <= 0) {
                     ((Zombie) collider).startWalking();
