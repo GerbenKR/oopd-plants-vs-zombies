@@ -4,7 +4,6 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.EntitySpawner;
 import com.github.hanyaeger.tutorial.WaveConfig;
 import com.github.hanyaeger.tutorial.entities.zombies.NormalZombie;
-
 import java.util.List;
 import java.util.Random;
 
@@ -24,7 +23,7 @@ public class ZombieSpawner extends EntitySpawner {
     private long lastSpawnTime;
 
     public ZombieSpawner(List<WaveConfig> waveConfigs) {
-        super(0);
+        super(0); // We wil set the interval later in this Class due to different waves
 
         this.waveConfigs = waveConfigs;
         this.waveStartTime = System.currentTimeMillis();
@@ -33,13 +32,26 @@ public class ZombieSpawner extends EntitySpawner {
 
     @Override
     protected void spawnEntities() {
-//        First, check if all waves are done or not
+//        First: check if all waves are done
+//        @TODO: Is this a victory?!?!?
         if (waveIndex >= waveConfigs.size()) return;
 
         long now = System.currentTimeMillis();
         WaveConfig currentWave = waveConfigs.get(waveIndex);
 
-        // Check of deze wave voorbij is
+//        If the wave type is waiting, do nothing until the time is past
+        if (currentWave.getWaveType() == WaveConfig.WaveType.WAITING) {
+            if (now - waveStartTime > currentWave.getDurationMs()) {
+                waveIndex++;
+                if (waveIndex < waveConfigs.size()) {
+                    waveStartTime = now;
+                    lastSpawnTime = 0;
+                }
+            }
+            return;
+        }
+
+        // Handle end of WAVE or FINAL_WAVE
         if (now - waveStartTime > currentWave.getDurationMs()) {
             waveIndex++;
             if (waveIndex < waveConfigs.size()) {
@@ -49,16 +61,15 @@ public class ZombieSpawner extends EntitySpawner {
             return;
         }
 
-        // Check of het tijd is om te spawnen
+        // Spawn zombie based on spawn rate
         if (now - lastSpawnTime >= currentWave.getSpawnRateMs()) {
             lastSpawnTime = now;
-
-            // Spawn 1 zombie
             Coordinate2D spawnPosition = getRandomCellPosition();
-            var zombie = new NormalZombie(spawnPosition); // voorlopig alleen NormalZombie
+            var zombie = new NormalZombie(spawnPosition);
             spawn(zombie);
         }
     }
+
 
     private Coordinate2D getRandomCellPosition() {
         int row = new Random().nextInt(ROWS);
