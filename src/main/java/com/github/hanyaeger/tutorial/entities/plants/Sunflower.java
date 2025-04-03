@@ -1,22 +1,23 @@
 package com.github.hanyaeger.tutorial.entities.plants;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.entities.EntitySpawner;
+import com.github.hanyaeger.core.entities.EntityCollection;
 import com.github.hanyaeger.tutorial.config.Config;
 import com.github.hanyaeger.tutorial.entities.items.Sun;
 import com.github.hanyaeger.tutorial.entities.managers.SunManager;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
+import com.google.inject.Injector;
+
+import java.util.List;
+
 
 public class Sunflower extends Plant {
     private SunManager manager;
 
-    public Sunflower(Coordinate2D location) {
+    public Sunflower(Coordinate2D location, SunManager manager) {
         super(location, Config.SUNFLOWER_HEALTH, Config.SUNFLOWER_COST, Config.SUNFLOWER_ID);
-
-//        Timeline sunProduction = new Timeline(new KeyFrame(Duration.seconds(10), e -> generateSun(location)));
-//        sunProduction.setCycleCount(Timeline.INDEFINITE);
-//        sunProduction.play();
+        this.manager = manager;
+        doAction();
     }
 
     @Override
@@ -26,6 +27,26 @@ public class Sunflower extends Plant {
 
     @Override
     public void doAction() {
-        System.out.println("Sunflower");
+
+    }
+
+    @Override
+    public void setupEntitySpawners() {
+        
+    }
+
+    @Override
+    public Injector getInjector() {
+        return null;
+    }
+
+    @Override
+    public EntityCollection getEntityCollection() {
+        return null;
+    }
+
+    @Override
+    public List<EntitySpawner> getSpawners() {
+        return List.of();
     }
 }

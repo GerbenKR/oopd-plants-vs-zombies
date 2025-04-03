@@ -1,7 +1,12 @@
 package com.github.hanyaeger.tutorial.entities.plants;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.entities.EntitySpawner;
+import com.github.hanyaeger.core.entities.EntityCollection;
 import com.github.hanyaeger.tutorial.config.Config;
+import com.google.inject.Injector;
+
+import java.util.List;
 
 public class Peashooter extends Plant {
     public Peashooter(Coordinate2D location) {
@@ -16,5 +21,25 @@ public class Peashooter extends Plant {
     @Override
     public void doAction() {
         System.out.println("Peashooter");
+    }
+
+    @Override
+    public void setupEntitySpawners() {
+
+    }
+
+    @Override
+    public Injector getInjector() {
+        return null;
+    }
+
+    @Override
+    public EntityCollection getEntityCollection() {
+        return null;
+    }
+
+    @Override
+    public List<EntitySpawner> getSpawners() {
+        return List.of();
     }
 }

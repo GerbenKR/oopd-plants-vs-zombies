@@ -65,7 +65,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     public void addSelectedPlant(Coordinate2D location) {
         switch(selectedPlant.getId()) {
             case Config.SUNFLOWER_ID:
-                Plant sunflower = new Sunflower(location);
+                Plant sunflower = new Sunflower(location, this.sunManager);
                 addEntity(sunflower);
                 break;
             case Config.PEASHOOTER_ID:
