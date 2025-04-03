@@ -6,6 +6,7 @@ import com.github.hanyaeger.api.entities.impl.RectangleEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import com.github.hanyaeger.api.userinput.MouseEnterListener;
 import com.github.hanyaeger.api.userinput.MouseExitListener;
+import com.github.hanyaeger.tutorial.entities.plants.Plant;
 import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
@@ -33,11 +34,17 @@ public class GrassTile extends RectangleEntity implements MouseButtonPressedList
 
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        if(this.level.getSelectedPlant() != null) {
+        boolean isGrassTileOccupied = false;
+        for (Plant plant : level.getPlants()) {
+            if(plant.getLocation().getX() == this.position.getX() && plant.getLocation().getY() == this.position.getY()) {
+                isGrassTileOccupied = true;
+            }
+        }
+
+        if(this.level.getSelectedPlant() != null && !isGrassTileOccupied) {
             this.level.addSelectedPlant(this.position);
         }
     }
-
 
     @Override
     public void onMouseEntered() {

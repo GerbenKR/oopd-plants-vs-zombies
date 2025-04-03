@@ -29,6 +29,10 @@ public abstract class Plant extends SpriteEntity implements Collider, Collided {
 
     public abstract void doAction();
 
+    public int getId() {
+        return id;
+    }
+
     public void setHealth(int health) {
         this.health = health;
     }

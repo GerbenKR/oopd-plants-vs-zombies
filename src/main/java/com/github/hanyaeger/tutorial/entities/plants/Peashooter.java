@@ -31,6 +31,7 @@ public class Peashooter extends Plant {
         if(this.getHealth() <= 0) {
             remove();
             level.getSpawners().remove(spawner);
+            this.level.getPlants().remove(this);
         }
 
         for (Collider collider : list) {
