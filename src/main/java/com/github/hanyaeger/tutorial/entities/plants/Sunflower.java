@@ -6,18 +6,19 @@ import com.github.hanyaeger.core.entities.EntityCollection;
 import com.github.hanyaeger.tutorial.config.Config;
 import com.github.hanyaeger.tutorial.entities.items.Sun;
 import com.github.hanyaeger.tutorial.entities.managers.SunManager;
-import com.google.inject.Injector;
-
-import java.util.List;
+import com.github.hanyaeger.tutorial.entities.spawners.SunSpawner;
+import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 
 
 public class Sunflower extends Plant {
     private SunManager manager;
 
-    public Sunflower(Coordinate2D location, SunManager manager) {
+    public Sunflower(Coordinate2D location, SunManager manager, FirstLevel level) {
         super(location, Config.SUNFLOWER_HEALTH, Config.SUNFLOWER_COST, Config.SUNFLOWER_ID);
         this.manager = manager;
         doAction();
+
+        level.addEntitySpawner(new SunSpawner(this.manager));
     }
 
     @Override
@@ -28,25 +29,5 @@ public class Sunflower extends Plant {
     @Override
     public void doAction() {
 
-    }
-
-    @Override
-    public void setupEntitySpawners() {
-        
-    }
-
-    @Override
-    public Injector getInjector() {
-        return null;
-    }
-
-    @Override
-    public EntityCollection getEntityCollection() {
-        return null;
-    }
-
-    @Override
-    public List<EntitySpawner> getSpawners() {
-        return List.of();
     }
 }

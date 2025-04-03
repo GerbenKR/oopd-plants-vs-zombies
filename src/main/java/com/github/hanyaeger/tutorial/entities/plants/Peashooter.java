@@ -22,24 +22,4 @@ public class Peashooter extends Plant {
     public void doAction() {
         System.out.println("Peashooter");
     }
-
-    @Override
-    public void setupEntitySpawners() {
-
-    }
-
-    @Override
-    public Injector getInjector() {
-        return null;
-    }
-
-    @Override
-    public EntityCollection getEntityCollection() {
-        return null;
-    }
-
-    @Override
-    public List<EntitySpawner> getSpawners() {
-        return List.of();
-    }
 }
