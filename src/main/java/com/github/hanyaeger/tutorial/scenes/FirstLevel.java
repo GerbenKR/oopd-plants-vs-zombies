@@ -5,6 +5,7 @@ import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.tutorial.PVZ;
 import com.github.hanyaeger.tutorial.config.Config;
+import com.github.hanyaeger.tutorial.entities.displays.AnnouncementDisplayText;
 import com.github.hanyaeger.tutorial.entities.inventory.InventoryItem;
 import com.github.hanyaeger.tutorial.entities.inventory.InventoryItemWrapper;
 import com.github.hanyaeger.tutorial.entities.managers.SunManager;
@@ -25,6 +26,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     private ArrayList<Integer> cooldownPlants = new ArrayList<>();
     private ArrayList<InventoryItem> allowedPlants = new ArrayList<>();
     private final SunManager sunManager = new SunManager();
+    public AnnouncementDisplayText announcementDisplayText;
 
     private List<WaveConfig> waves = List.of(
             new WaveConfig(WaveConfig.WaveType.WAITING, 15_000, 0), // 15 seconden wachten
@@ -49,16 +51,22 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
 
     @Override
     public void setupEntities() {
+        announcementDisplayText = new AnnouncementDisplayText(new Coordinate2D(getWidth() / 2, getHeight() / 2));
+
+        announcementDisplayText.setAnnouncementDisplayText("dfasdfsad");
+
+        addEntity(announcementDisplayText);
+
         addEntity(this.sunManager.getSunDisplayText());
 
-        for(int index = 0; index < this.allowedPlants.size(); index++) {
+        for (int index = 0; index < this.allowedPlants.size(); index++) {
             addEntity(new InventoryItemWrapper(this.allowedPlants.get(index), index, sunManager, this));
         }
     }
 
     @Override
     public void setupEntitySpawners() {
-        addEntitySpawner(new ZombieSpawner(waves));
+        addEntitySpawner(new ZombieSpawner(this, waves));
         addEntitySpawner(new SunSpawner(this.sunManager));
     }
 

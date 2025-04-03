@@ -10,7 +10,7 @@ import java.util.List;
 public class BalloonZombie extends Zombie {
 
     public BalloonZombie(Coordinate2D location) {
-        super(location, "sprites/balloon-zombie.gif", 200, 0.3, 100);
+        super(location, "sprites/balloon-zombie.png", 200, 0.3, 100);
     }
 
     @Override

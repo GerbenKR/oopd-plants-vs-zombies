@@ -2,7 +2,7 @@ package com.github.hanyaeger.tutorial.entities.zombies;
 
 public enum ZombieType {
 
-    NORMAL_ZOMBIE(Zombie.class),
+    NORMAL_ZOMBIE(NormalZombie.class),
     CONE_ZOMBIE(ConeZombie.class),
     BUCKET_ZOMBIE(BucketZombie.class),
     BALLOON_ZOMBIE(BalloonZombie.class);
