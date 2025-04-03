@@ -3,7 +3,8 @@ package com.github.hanyaeger.tutorial.spawners;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.EntitySpawner;
 import com.github.hanyaeger.tutorial.WaveConfig;
-import com.github.hanyaeger.tutorial.entities.zombies.NormalZombie;
+import com.github.hanyaeger.tutorial.entities.zombies.Zombie;
+import com.github.hanyaeger.tutorial.entities.zombies.ZombieType;
 import java.util.List;
 import java.util.Random;
 
@@ -11,10 +12,8 @@ public class ZombieSpawner extends EntitySpawner {
     private static final int START_COLUMN_X = 750;
     private static final int START_COLUMN_Y = 50;
 
-    private static final int COLUMNS = 1;
     private static final int ROWS = 5;
 
-    private static final int CELL_WIDTH = 55;
     private static final int CELL_HEIGHT = 70;
 
     private List<WaveConfig> waveConfigs;
@@ -64,12 +63,21 @@ public class ZombieSpawner extends EntitySpawner {
         // Spawn zombie based on spawn rate
         if (now - lastSpawnTime >= currentWave.getSpawnRateMs()) {
             lastSpawnTime = now;
-            Coordinate2D spawnPosition = getRandomCellPosition();
-            var zombie = new NormalZombie(spawnPosition);
-            spawn(zombie);
+            var spawnPosition = getRandomCellPosition();
+            var zombieType = getRandomZombieType();
+
+            System.out.println("Lets spawn a zombie!" + zombieType);
+
+            try {
+                Zombie zombie = zombieType.getZombieClass()
+                        .getConstructor(Coordinate2D.class)
+                        .newInstance(spawnPosition);
+                spawn(zombie);
+            } catch (Exception e) {
+                e.printStackTrace(); // Debug, later eventueel loggen
+            }
         }
     }
-
 
     private Coordinate2D getRandomCellPosition() {
         int row = new Random().nextInt(ROWS);
@@ -77,5 +85,10 @@ public class ZombieSpawner extends EntitySpawner {
         double y = START_COLUMN_Y + row * CELL_HEIGHT;
 
         return new Coordinate2D(x, y);
+    }
+
+    private ZombieType getRandomZombieType() {
+        ZombieType[] types = ZombieType.values();
+        return types[new Random().nextInt(types.length)];
     }
 }
