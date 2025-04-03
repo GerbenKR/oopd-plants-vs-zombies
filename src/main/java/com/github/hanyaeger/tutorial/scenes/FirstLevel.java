@@ -10,9 +10,7 @@ import com.github.hanyaeger.tutorial.entities.inventory.InventoryItemWrapper;
 import com.github.hanyaeger.tutorial.entities.managers.SunManager;
 import com.github.hanyaeger.tutorial.WaveConfig;
 import com.github.hanyaeger.tutorial.entities.map.GrassTileMap;
-import com.github.hanyaeger.tutorial.entities.plants.Peashooter;
-import com.github.hanyaeger.tutorial.entities.plants.Plant;
-import com.github.hanyaeger.tutorial.entities.plants.Sunflower;
+import com.github.hanyaeger.tutorial.entities.plants.*;
 import com.github.hanyaeger.tutorial.entities.spawners.SunSpawner;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -40,6 +38,8 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
 
         this.allowedPlants.add(new InventoryItem(Config.SUNFLOWER_COST, Config.SUNFLOWER_ID, Config.SUNFLOWER_NAME));
         this.allowedPlants.add(new InventoryItem(Config.PEASHOOTER_COST, Config.PEASHOOTER_ID, Config.PEASHOOTER_NAME));
+        this.allowedPlants.add(new InventoryItem(Config.WALNUT_COST, Config.WALNUT_ID, Config.WALNUT_NAME));
+        this.allowedPlants.add(new InventoryItem(Config.REPEATER_COST, Config.REPEATER_ID, Config.REPEATER_NAME));
     }
 
     @Override
@@ -72,6 +72,12 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
                 Plant peashooter = new Peashooter(location, this);
                 addEntity(peashooter);
                 break;
+            case Config.WALNUT_ID:
+                Plant walnut = new Walnut(location);
+                addEntity(walnut);
+            case Config.REPEATER_ID:
+                Plant repeater = new Repeater(location, this);
+                addEntity(repeater);
             default:
                 break;
         }

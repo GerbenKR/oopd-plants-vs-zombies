@@ -8,26 +8,27 @@ import com.github.hanyaeger.tutorial.entities.spawners.PeaSpawner;
 import com.github.hanyaeger.tutorial.entities.zombies.Zombie;
 import com.github.hanyaeger.tutorial.scenes.FirstLevel;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Peashooter extends Plant {
+public class Repeater extends Plant {
     private FirstLevel level;
     private EntitySpawner spawner;
 
-    public Peashooter(Coordinate2D location, FirstLevel level) {
-        super(location, Config.PEASHOOTER_HEALTH, Config.SUNFLOWER_COST, Config.PEASHOOTER_ID);
+    public Repeater(Coordinate2D location, FirstLevel level) {
+        super(location, Config.REPEATER_HEALTH, Config.SUNFLOWER_COST, Config.REPEATER_ID);
         this.level = level;
         doAction();
     }
 
     @Override
     protected void setupEntities() {
-        addEntity(new PeashooterSprite(Config.PEASHOOTER_RESOURCE, new Coordinate2D(0, 0)));
+        addEntity(new RepeaterSprite(Config.REPEATER_RESOURCE, new Coordinate2D(0, 0)));
     }
 
     @Override
     public void doAction() {
-        level.addEntitySpawner(new PeaSpawner(location, 2500));
+        level.addEntitySpawner(new PeaSpawner(location, 1250));
         this.spawner = this.level.getSpawners().getLast();
     }
 
