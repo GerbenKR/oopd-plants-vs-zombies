@@ -5,24 +5,29 @@ import com.github.hanyaeger.api.entities.EntitySpawner;
 import com.github.hanyaeger.tutorial.WaveConfig;
 import com.github.hanyaeger.tutorial.entities.zombies.Zombie;
 import com.github.hanyaeger.tutorial.entities.zombies.ZombieType;
+import com.github.hanyaeger.tutorial.scenes.FirstLevel;
+
 import java.util.List;
 import java.util.Random;
 
 public class ZombieSpawner extends EntitySpawner {
+    private FirstLevel firstLevel;
+
     private static final int START_COLUMN_X = 750;
     private static final int START_COLUMN_Y = 50;
-
     private static final int ROWS = 5;
-
     private static final int CELL_HEIGHT = 70;
 
-    private List<WaveConfig> waveConfigs;
+    private final List<WaveConfig> waveConfigs;
     private int waveIndex = 0;
     private long waveStartTime;
     private long lastSpawnTime;
+    private boolean finalWaveLogged = false;
 
-    public ZombieSpawner(List<WaveConfig> waveConfigs) {
-        super(0); // We wil set the interval later in this Class due to different waves
+    public ZombieSpawner(FirstLevel firstLevel, List<WaveConfig> waveConfigs) {
+        super(0); // Interval wordt per wave dynamisch bepaald
+
+        this.firstLevel = firstLevel;
 
         this.waveConfigs = waveConfigs;
         this.waveStartTime = System.currentTimeMillis();
@@ -31,40 +36,71 @@ public class ZombieSpawner extends EntitySpawner {
 
     @Override
     protected void spawnEntities() {
-//        First: check if all waves are done
-//        @TODO: Is this a victory?!?!?
-        if (waveIndex >= waveConfigs.size()) return;
+        if (allWavesCompleted()) return;
 
-        long now = System.currentTimeMillis();
         WaveConfig currentWave = waveConfigs.get(waveIndex);
+        long now = System.currentTimeMillis();
 
-//        If the wave type is waiting, do nothing until the time is past
-        if (currentWave.getWaveType() == WaveConfig.WaveType.WAITING) {
-            if (now - waveStartTime > currentWave.getDurationMs()) {
-                waveIndex++;
-                if (waveIndex < waveConfigs.size()) {
-                    waveStartTime = now;
-                    lastSpawnTime = 0;
-                }
-            }
+        if (isWaitingWave(currentWave)) {
+            handleWaitingWave(currentWave, now);
             return;
         }
 
-        // Handle end of WAVE or FINAL_WAVE
-        if (now - waveStartTime > currentWave.getDurationMs()) {
-            waveIndex++;
-            if (waveIndex < waveConfigs.size()) {
-                waveStartTime = now;
-                lastSpawnTime = 0;
-            }
+        if (isFinalWave(currentWave)) {
+            showFinalWaveStartingAnnouncement();
+        }
+
+        if (waveDurationPassed(currentWave, now)) {
+            advanceToNextWave(now);
             return;
         }
 
-        // Spawn zombie based on spawn rate
-        if (now - lastSpawnTime >= currentWave.getSpawnRateMs()) {
+        trySpawnZombie(currentWave, now);
+    }
+
+    private boolean allWavesCompleted() {
+        return waveIndex >= waveConfigs.size();
+    }
+
+    private boolean isWaitingWave(WaveConfig wave) {
+        return wave.getWaveType() == WaveConfig.WaveType.WAITING;
+    }
+
+    private boolean isFinalWave(WaveConfig wave) {
+        return wave.getWaveType() == WaveConfig.WaveType.FINAL_WAVE;
+    }
+
+    private void showFinalWaveStartingAnnouncement() {
+        if (!finalWaveLogged) {
+            this.firstLevel.announcementDisplayText.setAnnouncementDisplayText("The final wave is starting!");
+            finalWaveLogged = true;
+        }
+    }
+
+    private boolean waveDurationPassed(WaveConfig wave, long now) {
+        return now - waveStartTime > wave.getDurationMs();
+    }
+
+    private void handleWaitingWave(WaveConfig wave, long now) {
+        if (waveDurationPassed(wave, now)) {
+            advanceToNextWave(now);
+        }
+    }
+
+    private void advanceToNextWave(long now) {
+        waveIndex++;
+        if (!allWavesCompleted()) {
+            waveStartTime = now;
+            lastSpawnTime = 0;
+        }
+    }
+
+    private void trySpawnZombie(WaveConfig wave, long now) {
+        if (now - lastSpawnTime >= wave.getSpawnRateMs()) {
             lastSpawnTime = now;
-            var spawnPosition = getRandomCellPosition();
-            var zombieType = getRandomZombieType();
+
+            Coordinate2D spawnPosition = getRandomCellPosition();
+            ZombieType zombieType = getRandomZombieType();
 
             try {
                 Zombie zombie = zombieType.getZombieClass()
@@ -72,7 +108,7 @@ public class ZombieSpawner extends EntitySpawner {
                         .newInstance(spawnPosition);
                 spawn(zombie);
             } catch (Exception e) {
-                e.printStackTrace(); // Debug, later eventueel loggen
+                e.printStackTrace(); // Voor nu: printen. Later eventueel loggen.
             }
         }
     }
@@ -81,7 +117,6 @@ public class ZombieSpawner extends EntitySpawner {
         int row = new Random().nextInt(ROWS);
         double x = START_COLUMN_X;
         double y = START_COLUMN_Y + row * CELL_HEIGHT;
-
         return new Coordinate2D(x, y);
     }
 
