@@ -55,10 +55,9 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
         announcementDisplayText = new AnnouncementDisplayText(new Coordinate2D(getWidth() / 2, getHeight() / 2));
 
         addEntity(announcementDisplayText);
-
         addEntity(this.sunManager.getSunDisplayText());
 
-        for (int index = 0; index < this.allowedPlants.size(); index++) {
+        for (int index = 0; index < this.getAllowedPlants().size(); index++) {
             addEntity(new InventoryItemWrapper(this.allowedPlants.get(index), index, sunManager, this));
         }
     }

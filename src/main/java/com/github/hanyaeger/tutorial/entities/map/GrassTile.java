@@ -14,18 +14,21 @@ import javafx.scene.paint.Color;
 import java.nio.file.FileStore;
 
 public class GrassTile extends RectangleEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
-    private FirstLevel level;
-    private Coordinate2D position;
+    private final FirstLevel level;
+    private final Coordinate2D position;
 
     public GrassTile(Coordinate2D position, Size size, FirstLevel level) {
         super(position);
         this.position = new Coordinate2D(position.getX() + 30, position.getY() + 35);
+        this.level = level;
+        setupGrassTile();
+    }
+
+    public void setupGrassTile() {
         setFill(Color.WHITE);
         setWidth(55);
         setHeight(70);
         setOpacity(0);
-
-        this.level = level;
     }
 
     @Override

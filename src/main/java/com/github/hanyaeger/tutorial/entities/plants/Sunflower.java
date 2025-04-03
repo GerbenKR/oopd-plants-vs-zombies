@@ -23,7 +23,7 @@ public class Sunflower extends Plant {
         this.level = level;
         doAction();
     }
-    
+
     @Override
     public void doAction() {
         level.addEntitySpawner(new SunSpawner(this.manager, location));
@@ -32,14 +32,14 @@ public class Sunflower extends Plant {
 
     @Override
     public void onCollision(List<Collider> list) {
-        if(this.health <= 0) {
+        if(this.getHealth() <= 0) {
             remove();
             level.getSpawners().remove(spawner);
         }
 
         for (Collider collider : list) {
             if (collider instanceof Zombie) {
-                this.health -= ((Zombie) collider).getDamage();
+                this.setHealth(this.getHealth() - ((Zombie) collider).getDamage());
             }
         }
     }

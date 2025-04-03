@@ -5,7 +5,7 @@ import com.github.hanyaeger.api.entities.EntitySpawner;
 import com.github.hanyaeger.tutorial.entities.items.Pea;
 
 public class PeaSpawner extends EntitySpawner {
-    private Coordinate2D location;
+    private final Coordinate2D location;
 
     public PeaSpawner(Coordinate2D location, long interval) {
         super(interval);

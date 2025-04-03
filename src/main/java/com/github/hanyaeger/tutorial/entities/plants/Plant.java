@@ -13,11 +13,11 @@ import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 
 public abstract class Plant extends SpriteEntity implements Collider, Collided {
     protected int id;
-    protected double health;
+    protected int health;
     protected int cost;
     protected Coordinate2D location;
 
-    public Plant(Coordinate2D initialLocation, String resource, double health, int cost, int id) {
+    public Plant(Coordinate2D initialLocation, String resource, int health, int cost, int id) {
         super(resource, initialLocation, new Size(50, 50));
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
 
@@ -33,7 +33,7 @@ public abstract class Plant extends SpriteEntity implements Collider, Collided {
         this.health = health;
     }
 
-    public double getHealth() {
+    public int getHealth() {
         return this.health;
     }
 

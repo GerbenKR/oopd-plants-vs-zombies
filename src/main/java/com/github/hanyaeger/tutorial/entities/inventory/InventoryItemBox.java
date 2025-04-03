@@ -13,51 +13,24 @@ import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
-public class InventoryItemBox extends RectangleEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
-    private final InventoryItem inventoryItem;
-    private final SunManager sunManager;
-    private final FirstLevel level;
-
-    public InventoryItemBox(Coordinate2D position, Size size, InventoryItem inventoryItem, SunManager sunManager, FirstLevel level) {
+public class InventoryItemBox extends RectangleEntity {
+    public InventoryItemBox(Coordinate2D position, Size size) {
         super(position, size);
-
-        this.sunManager = sunManager;
-        this.inventoryItem = inventoryItem;
-        this.level = level;
-
-        drawBox();
+        drawDefaultBox();
     }
 
-    public void drawBox() {
+    public void drawUnactiveBox() {
+        setStrokeWidth(5);
+        setStrokeColor(Color.RED);
+    }
+
+    public void drawActiveBox() {
+        setStrokeWidth(5);
+        setStrokeColor(Color.GREEN);
+    }
+
+    public void drawDefaultBox() {
         setFill(Color.WHITE);
-    }
-
-    @Override
-    public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        if(isInventoryItemSelectable()) {
-            this.level.setSelectedPlant(inventoryItem);
-        }
-    }
-
-    @Override
-    public void onMouseEntered() {
-        if(isInventoryItemSelectable()) {
-            setCursor(Cursor.HAND);
-            setStrokeWidth(5);
-            setStrokeColor(Color.GREEN);
-        } else {
-            setStrokeWidth(5);
-            setStrokeColor(Color.RED);
-        }
-    }
-
-    @Override
-    public void onMouseExited() {
-        setCursor(Cursor.DEFAULT);
         setStrokeWidth(0);
-    }
-
-    public boolean isInventoryItemSelectable() {
-        return sunManager.getSunAmount() >= inventoryItem.getCost() && !level.getCooldownPlants().contains(inventoryItem.getId());
     }
 }

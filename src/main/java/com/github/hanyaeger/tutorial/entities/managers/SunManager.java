@@ -30,11 +30,7 @@ public class SunManager {
     public SunDisplayText getSunDisplayText() {
         return sunDisplayText;
     }
-
-    public boolean isItemAffordable(int cost) {
-        return this.sunAmount >= cost;
-    }
-
+    
     public int getSunAmount() {
         return this.sunAmount;
     }
