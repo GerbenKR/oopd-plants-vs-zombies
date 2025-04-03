@@ -29,6 +29,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
     private final SunManager sunManager = new SunManager();
 
     private int zombieCount = 0;
+    private boolean isFinalWave = false;
 
     public AnnouncementDisplayText announcementDisplayText;
 
@@ -138,6 +139,14 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer, 
 
     public void setZombieCount(int zombieCount) {
         this.zombieCount = zombieCount;
+    }
+
+    public boolean isFinalWave() {
+        return isFinalWave;
+    }
+
+    public void setFinalWave(boolean finalWave) {
+        isFinalWave = finalWave;
     }
 
 }

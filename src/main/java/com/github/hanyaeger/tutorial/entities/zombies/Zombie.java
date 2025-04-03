@@ -41,9 +41,11 @@ public abstract class Zombie extends DynamicSpriteEntity implements Collided, Co
         if (this.health <= 0) {
             remove();
             firstLevel.setZombieCount(firstLevel.getZombieCount() - 1);
+        }
 
-            System.out.println("Killed");
-            System.out.println("Zombie count: " + firstLevel.getZombieCount());
+        // When the zombie count is 0 & we are in the final wave, then the user won
+        if (firstLevel.getZombieCount() == 0 && firstLevel.isFinalWave()) {
+            pvz.setActiveScene(3);
         }
     }
 

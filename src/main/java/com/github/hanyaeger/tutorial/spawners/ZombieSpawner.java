@@ -47,6 +47,7 @@ public class ZombieSpawner extends EntitySpawner {
         }
 
         if (isFinalWave(currentWave)) {
+            firstLevel.setFinalWave(true);
             showFinalWaveStartingAnnouncement();
         }
 
@@ -110,8 +111,6 @@ public class ZombieSpawner extends EntitySpawner {
 
                 // Increase the zombie count
                 firstLevel.setZombieCount(firstLevel.getZombieCount() + 1);
-                System.out.println("Spawned a zombie!");
-                System.out.println("Zombie count: " + firstLevel.getZombieCount());
             } catch (Exception e) {
                 e.printStackTrace(); // Voor nu: printen. Later eventueel loggen.
             }
