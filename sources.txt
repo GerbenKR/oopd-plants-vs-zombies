@@ -1,0 +1,8 @@
+startscreen.jpg => https://store.steampowered.com/app/3590/Plants_vs_Zombies_GOTY_Edition/
+theme.mp3 => https://store.steampowered.com/app/3590/Plants_vs_Zombies_GOTY_Edition/
+zombie.gif => => https://github.com/ak53/Plants-Vs-Zombies/blob/master/Zombie.gif
+cone-zombie.gif => https://github.com/ak53/Plants-Vs-Zombies/blob/master/Conehead.gif
+bucket-zombie.gif => https://github.com/ak53/Plants-Vs-Zombies/blob/master/buckethead.gif
+balloon-zombie.gif => https://static.wikia.nocookie.net/plantsvszombies/images/1/11/Ballon_zombie_idle.gif
+
+Voor de rest zijn alle afbeeldingen/sprites afkomstig van https://plantsvszombies.fandom.com.
