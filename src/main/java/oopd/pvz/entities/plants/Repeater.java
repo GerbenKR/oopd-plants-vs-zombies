@@ -23,6 +23,7 @@ public class Repeater extends Plant {
 
     @Override
     public void doAction() {
+        // Add a spawner so the repeater shoots peas (twice as fast as the peashooter)
         level.addEntitySpawner(new PeaSpawner(location, 1250));
         this.spawner = this.level.getSpawners().getLast();
     }

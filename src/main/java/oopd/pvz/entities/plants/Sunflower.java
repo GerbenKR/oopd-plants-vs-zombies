@@ -26,6 +26,7 @@ public class Sunflower extends Plant {
 
     @Override
     public void doAction() {
+        // Add a spawner so the sunflower generate suns
         level.addEntitySpawner(new SunSpawner(this.manager, location));
         this.spawner = level.getSpawners().getLast();
     }

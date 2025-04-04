@@ -23,6 +23,7 @@ public class Peashooter extends Plant {
 
     @Override
     public void doAction() {
+        // Add a spawner so the peashooter shoots peas
         level.addEntitySpawner(new PeaSpawner(location, 2500));
         this.spawner = this.level.getSpawners().getLast();
     }
