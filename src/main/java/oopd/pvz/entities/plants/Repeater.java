@@ -30,6 +30,7 @@ public class Repeater extends Plant {
     @Override
     public void onCollision(List<Collider> list) {
         if(this.getHealth() <= 0) {
+            // delete the plant object, but also the pea spawner so it doesnt launch peas and make sure the tile can be used again.
             remove();
             level.getSpawners().remove(spawner);
             this.level.getPlants().remove(this);

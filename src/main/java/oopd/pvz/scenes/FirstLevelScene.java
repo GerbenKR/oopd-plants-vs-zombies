@@ -101,6 +101,7 @@ public class FirstLevelScene extends DynamicScene implements EntitySpawnerContai
                 break;
         }
 
+        // Subtract the cost, set a cooldown for the plant en remove selection.
         this.sunManager.subtractSun(this.selectedPlant.getCost());
         cooldownPlants.add(selectedPlant.getId());
         startCooldownTimer(selectedPlant.getId());

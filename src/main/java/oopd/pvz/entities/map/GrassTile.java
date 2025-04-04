@@ -32,6 +32,7 @@ public class GrassTile extends RectangleEntity implements MouseButtonPressedList
 
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
+        // Make sure that the grass tile isnt already occupied
         boolean isGrassTileOccupied = false;
         for (Plant plant : level.getPlants()) {
             if(plant.getLocation().getX() == this.position.getX() && plant.getLocation().getY() == this.position.getY()) {
@@ -40,6 +41,7 @@ public class GrassTile extends RectangleEntity implements MouseButtonPressedList
         }
 
         if(this.level.getSelectedPlant() != null && !isGrassTileOccupied) {
+            // Add the current selected plant to the field
             this.level.addSelectedPlant(this.position);
         }
     }

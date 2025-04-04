@@ -33,6 +33,7 @@ public class Sunflower extends Plant {
     @Override
     public void onCollision(List<Collider> list) {
         if(this.getHealth() <= 0) {
+            // delete the plant object, but also the sun spawner so it doesnt generate suns and make sure the tile can be used again.
             remove();
             level.getSpawners().remove(spawner);
             this.level.getPlants().remove(this);
